@@ -3,959 +3,537 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Europa 2026 — Roteiro de Viagem</title>
+<title>Europa 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #f5f0e8;
-    --ink: #1a1410;
-    --warm-mid: #8b7355;
-    --accent: #c8462b;
-    --accent-light: #e8956d;
-    --gold: #c9a84c;
-    --card-bg: #faf7f2;
-    --border: #ddd5c0;
-    --shadow: rgba(26,20,16,0.12);
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;
+  --s1:#111118;
+  --s2:#16161f;
+  --b1:rgba(255,255,255,0.07);
+  --b2:rgba(255,255,255,0.13);
+  --t:rgb(240,238,232);
+  --td:rgba(240,238,232,0.5);
+  --tdd:rgba(240,238,232,0.28);
+  --ac:#e8c96a;
+  --ac2:#c46b3a;
+  --ac3:#5b8fa8;
+  --glow:rgba(232,201,106,0.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Geist Mono',monospace;background:var(--bg);color:var(--t);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.7}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* TOPBAR */
+.tb{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--b1)}
+.tb-i{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:1.2rem;height:54px;padding:0 1.5rem}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);white-space:nowrap;flex-shrink:0}
+.logo b{color:var(--tdd);font-weight:400}
+.tabs{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;flex:1;padding:.35rem 0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;background:transparent;border:1px solid transparent;color:var(--tdd);padding:.28rem .7rem;border-radius:100px;font-family:'Geist Mono',monospace;font-size:.65rem;cursor:pointer;white-space:nowrap;transition:all .15s ease;letter-spacing:.03em}
+.tab:hover{color:var(--td);border-color:var(--b2);background:rgba(255,255,255,.04)}
+.tab.on{background:var(--ac);border-color:var(--ac);color:#0a0a0f;font-weight:600}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    min-height: 100vh;
-  }
+/* MAIN */
+.main{max-width:960px;margin:0 auto;padding:3rem 1.5rem 6rem}
+.dp{display:none}
+.dp.on{display:block;animation:fi .3s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-  /* HEADER */
-  .site-header {
-    background: var(--ink);
-    color: var(--cream);
-    padding: 2rem 1.5rem 1.5rem;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 3px solid var(--gold);
-  }
+/* HERO */
+.hero{margin-bottom:2.5rem}
+.hero-meta{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;flex-wrap:wrap}
+.dayn{font-family:'Geist Mono',monospace;font-size:.62rem;color:var(--ac);letter-spacing:.16em;text-transform:uppercase;background:rgba(232,201,106,.09);border:1px solid rgba(232,201,106,.2);padding:.22rem .6rem;border-radius:100px}
+.dated{font-family:'Geist Mono',monospace;font-size:.62rem;color:var(--tdd);letter-spacing:.05em}
+.htitle{font-family:'Instrument Serif',serif;font-size:clamp(2rem,6vw,3.8rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:.4rem}
+.htitle em{font-style:italic;color:var(--ac)}
+.hcity{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--tdd)}
+.intro{margin-top:1.3rem;background:linear-gradient(135deg,rgba(232,201,106,.055),rgba(91,143,168,.055));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;font-size:.82rem;line-height:1.78;color:rgba(240,238,232,.7);position:relative;overflow:hidden}
+.intro::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,201,106,.4),transparent)}
 
-  .site-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-  }
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr;gap:2rem}
+@media(min-width:720px){.grid{grid-template-columns:1fr 290px;gap:2rem}}
 
-  .site-header .subtitle {
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.3rem;
-  }
+/* SECTION LABEL */
+.slabel{font-family:'Geist Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tdd);margin:0 0 1.2rem;display:flex;align-items:center;gap:.7rem}
+.slabel::after{content:'';flex:1;height:1px;background:var(--b1)}
 
-  /* DAY NAV */
-  .day-nav {
-    background: var(--ink);
-    padding: 0 1rem 1rem;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    display: flex;
-    justify-content: center;
-  }
-  .day-nav::-webkit-scrollbar { display: none; }
+/* TIMELINE */
+.tl{}
+.ti{display:flex;gap:0;margin-bottom:1px;position:relative}
+.tl-l{width:48px;min-width:48px;display:flex;flex-direction:column;align-items:flex-end;padding-top:17px;padding-right:8px}
+.tl-t{font-family:'Geist Mono',monospace;font-size:.6rem;color:var(--tdd);letter-spacing:.04em;line-height:1}
+.tl-lv{width:1px;flex:1;min-height:10px;background:var(--b1);margin-top:4px;margin-right:0;align-self:center;margin-left:auto}
+.tl-m{width:20px;min-width:20px;display:flex;flex-direction:column;align-items:center;padding-top:18px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--s2);border:1.5px solid var(--b2);flex-shrink:0;transition:all .2s}
+.ti.hl .dot{width:9px;height:9px;background:var(--ac);border-color:var(--ac);box-shadow:0 0 10px var(--glow)}
+.ti.tr .dot{background:transparent;border-color:var(--b1)}
+.tl-lv2{width:1px;flex:1;min-height:10px;background:var(--b1);margin-top:3px}
+.tb2{flex:1;padding:9px 0 9px 11px}
 
-  .day-nav-inner {
-    display: flex;
-    gap: 0.4rem;
-    min-width: max-content;
-    padding: 0 0.5rem;
-  }
+/* HL CARD */
+.ti.hl .tb2{padding:0 0 7px 11px}
+.hc{background:var(--s1);border:1px solid var(--b1);border-radius:13px;padding:.9rem 1rem;transition:border-color .2s,box-shadow .2s}
+.hc:hover{border-color:var(--b2);box-shadow:0 4px 28px rgba(0,0,0,.35)}
+.hc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.45rem;margin-bottom:.38rem}
+.hc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.01em;line-height:1.3;color:var(--t)}
+.bgs{display:flex;gap:.25rem;flex-wrap:wrap;flex-shrink:0}
+.bg{font-family:'Geist Mono',monospace;font-size:.57rem;letter-spacing:.07em;text-transform:uppercase;padding:.16rem .45rem;border-radius:100px;white-space:nowrap}
+.bg-free{background:rgba(90,158,111,.13);color:#80cf98;border:1px solid rgba(90,158,111,.22)}
+.bg-paid{background:rgba(212,92,92,.1);color:#e87f7f;border:1px solid rgba(212,92,92,.18)}
+.bg-must{background:rgba(232,201,106,.1);color:var(--ac);border:1px solid rgba(232,201,106,.18)}
+.hc-body{font-size:.78rem;line-height:1.72;color:rgba(240,238,232,.62)}
+.hc-body strong{color:var(--t);font-weight:600}
+.hc-body em{color:var(--ac);font-style:italic}
 
-  .day-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.65);
-    padding: 0.45rem 0.75rem;
-    border-radius: 4px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.72rem;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
+/* TIPS */
+.tip{margin-top:.6rem;padding:.62rem .8rem;border-radius:9px;font-size:.75rem;line-height:1.65;display:flex;gap:.45rem}
+.ti-icon{flex-shrink:0;font-size:.78rem;line-height:1.65}
+.ti-c{flex:1}
+.ti-c strong{font-weight:600}
+.tip-info{background:rgba(91,143,168,.09);border:1px solid rgba(91,143,168,.14);color:rgba(175,208,224,.88)}
+.tip-warn{background:rgba(196,107,58,.09);border:1px solid rgba(196,107,58,.16);color:rgba(228,182,145,.9)}
+.tip-food{background:rgba(156,120,68,.09);border:1px solid rgba(196,155,80,.14);color:rgba(228,200,145,.88)}
+.tip-transport{background:rgba(91,143,168,.07);border:1px solid rgba(91,143,168,.12);color:rgba(160,195,215,.88)}
+.tip-must{background:rgba(232,201,106,.07);border:1px solid rgba(232,201,106,.14);color:rgba(238,222,155,.9)}
 
-  .day-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
+/* TR */
+.tr-row{padding:.3rem 0;font-size:.73rem;color:var(--tdd);font-style:italic}
 
-  .day-btn.active {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--ink);
-    font-weight: 700;
-  }
+/* SIDEBAR */
+.fc{background:var(--s1);border:1px solid var(--b1);border-radius:14px;overflow:hidden;position:sticky;top:68px}
+.fc-h{padding:.8rem 1rem;border-bottom:1px solid var(--b1)}
+.fc-hl{font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--td)}
+.fl{padding:.4rem 0;max-height:calc(100vh - 180px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--b1) transparent}
+.fi{padding:.68rem 1rem;border-bottom:1px solid var(--b1);transition:background .12s}
+.fi:last-child{border-bottom:none}
+.fi:hover{background:var(--s2)}
+.fn{font-family:'Syne',sans-serif;font-size:.74rem;font-weight:700;color:var(--t);margin-bottom:.22rem;line-height:1.3}
+.fd{font-size:.72rem;line-height:1.58;color:var(--tdd)}
+.fp{margin-top:.28rem;font-family:'Geist Mono',monospace;font-size:.64rem;color:var(--ac);letter-spacing:.04em}
 
-  /* MAIN */
-  .main {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 2rem 1.2rem 4rem;
-  }
+/* MOBILE FOOD */
+.fc-mob{display:none;background:var(--s1);border:1px solid var(--b1);border-radius:14px;overflow:hidden;margin-top:1.8rem}
+@media(max-width:719px){.fc-mob{display:block}.sidebar{display:none}}
 
-  /* DAY PANEL */
-  .day-panel { display: none; }
-  .day-panel.active { display: block; animation: fadeUp 0.35s ease; }
+/* NAV */
+.dn{display:flex;gap:.65rem;margin-top:2.5rem;padding-top:1.8rem;border-top:1px solid var(--b1)}
+.nb{flex:1;background:var(--s1);border:1px solid var(--b1);border-radius:11px;padding:.85rem 1rem;cursor:pointer;transition:all .18s;text-align:left;font-family:'Geist Mono',monospace}
+.nb:hover:not(:disabled){border-color:var(--b2);background:var(--s2)}
+.nb:disabled{opacity:.22;cursor:default}
+.nb.nr{text-align:right}
+.nb-l{font-size:.58rem;color:var(--tdd);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.25rem}
+.nb-n{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--td)}
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
 
-  .day-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.2rem;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .day-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-  }
-
-  .day-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 5vw, 2.4rem);
-    line-height: 1.15;
-    color: var(--ink);
-  }
-
-  .day-date {
-    font-size: 0.8rem;
-    color: var(--warm-mid);
-    margin-top: 0.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  .day-intro {
-    background: var(--ink);
-    color: var(--cream);
-    padding: 1.2rem 1.4rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    border-left: 4px solid var(--gold);
-  }
-
-  /* TIMELINE */
-  .timeline { position: relative; }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 52px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-
-  @media (max-width: 500px) {
-    .timeline::before { left: 44px; }
-  }
-
-  .timeline-item {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-  }
-
-  .timeline-time {
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: var(--warm-mid);
-    width: 44px;
-    min-width: 44px;
-    padding-top: 0.85rem;
-    text-align: right;
-    letter-spacing: 0.03em;
-  }
-
-  .timeline-dot {
-    width: 16px;
-    min-width: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border);
-    border: 2px solid var(--cream);
-  }
-
-  .timeline-item.highlight .dot {
-    background: var(--accent);
-    width: 12px;
-    height: 12px;
-  }
-
-  .timeline-item.transport .dot {
-    background: var(--warm-mid);
-  }
-
-  .timeline-card {
-    flex: 1;
-    padding: 0.8rem 1rem;
-    border-radius: 6px;
-    margin-bottom: 0.3rem;
-  }
-
-  .timeline-item.highlight .timeline-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px var(--shadow);
-  }
-
-  .timeline-item.transport .timeline-card {
-    background: transparent;
-    padding-left: 0;
-  }
-
-  .card-title {
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: 0.3rem;
-    color: var(--ink);
-  }
-
-  .timeline-item.transport .card-title {
-    font-weight: 400;
-    font-size: 0.82rem;
-    color: var(--warm-mid);
-    font-style: italic;
-  }
-
-  .card-body {
-    font-size: 0.85rem;
-    line-height: 1.65;
-    color: #4a3f30;
-  }
-
-  /* TIPS */
-  .tip {
-    margin-top: 0.7rem;
-    padding: 0.7rem 0.9rem;
-    border-radius: 4px;
-    font-size: 0.82rem;
-    line-height: 1.6;
-  }
-
-  .tip-info {
-    background: #e8f4e8;
-    border-left: 3px solid #4a7c4a;
-    color: #2d4d2d;
-  }
-
-  .tip-warn {
-    background: #fdf3e3;
-    border-left: 3px solid var(--gold);
-    color: #5c4210;
-  }
-
-  .tip-food {
-    background: #fce8e4;
-    border-left: 3px solid var(--accent);
-    color: #5c1f10;
-  }
-
-  .tip-transport {
-    background: #e8ecf8;
-    border-left: 3px solid #4a5c9c;
-    color: #1a2550;
-  }
-
-  .tip strong { font-weight: 600; }
-  .tip-icon { margin-right: 0.3rem; }
-
-  /* FOOD SECTION */
-  .food-section {
-    margin: 1.5rem 0;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .food-header {
-    background: var(--accent);
-    color: white;
-    padding: 0.7rem 1.1rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .food-list { padding: 0.8rem 1.1rem; }
-
-  .food-item {
-    padding: 0.7rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.85rem;
-    line-height: 1.55;
-  }
-
-  .food-item:last-child { border-bottom: none; }
-
-  .food-name {
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 0.15rem;
-  }
-
-  .food-desc { color: #5a4a36; }
-
-  .food-price {
-    font-size: 0.78rem;
-    color: var(--accent);
-    font-weight: 500;
-    margin-top: 0.15rem;
-  }
-
-  /* SECTION DIVIDER */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 2rem 0 1.5rem;
-    color: var(--warm-mid);
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-  .section-divider::before,
-  .section-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* BADGE */
-  .badge {
-    display: inline-block;
-    padding: 0.18rem 0.55rem;
-    border-radius: 3px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-left: 0.5rem;
-    vertical-align: middle;
-  }
-  .badge-free { background: #d4edda; color: #155724; }
-  .badge-paid { background: #f8d7da; color: #721c24; }
-  .badge-must { background: #fff3cd; color: #856404; }
-
-  /* NAV ARROWS */
-  .nav-arrows {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .nav-arrow {
-    flex: 1;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.8rem 1rem;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.82rem;
-    color: var(--ink);
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
-  .nav-arrow:hover { border-color: var(--accent); background: white; }
-  .nav-arrow:disabled { opacity: 0.3; cursor: default; }
-  .nav-arrow-label { font-size: 0.68rem; color: var(--warm-mid); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
-  .nav-arrow.next { text-align: right; align-items: flex-end; }
-  .nav-arrow-name { font-weight: 600; }
-
-  @media (max-width: 480px) {
-    .day-nav { justify-content: flex-start; }
-    .main { padding: 1.5rem 1rem 3rem; }
-    .timeline::before { left: 40px; }
-    .timeline-time { width: 38px; min-width: 38px; font-size: 0.68rem; }
-  }
+@media(max-width:600px){.main{padding:1.8rem .9rem 5rem}.htitle{font-size:clamp(1.7rem,8vw,2.8rem)}}
 </style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="subtitle">Guia de Viagem</div>
-  <h1>Europa 2026</h1>
+<header class="tb">
+  <div class="tb-i">
+    <div class="logo">Europa<b> '26</b></div>
+    <nav class="tabs" id="tabs"></nav>
+  </div>
 </header>
-
-<nav class="day-nav" role="navigation" aria-label="Navegação por dia">
-  <div class="day-nav-inner" id="dayNavInner"></div>
-</nav>
-
-<main class="main" id="mainContent"></main>
-
+<main class="main" id="main"></main>
 <script>
-const days = [
-  {
-    id: 1,
-    label: "Dia 1",
-    city: "Madrid",
-    title: "Chegada ao Velho Continente",
-    date: "Segunda-feira, 27 de abril de 2026",
-    emoji: "🇪🇸",
-    intro: "Bem-vindos à Europa! Vocês chegam em Madrid no início da tarde — ainda cheios de energia para explorar a capital espanhola. O fuso horário é CEST +2 (6h à frente de Campo Grande). Deixem as malas no hotel, calcem um sapato confortável e saiam para a cidade.",
-    events: [
-      { time: "12:15", type: "highlight", title: "✈️ Chegada em Madrid (MAD)", body: "Ao desembarcar, siga para a bagagem e depois para a área de transportes. Procure as máquinas da <strong>Tarjeta Multi</strong> — compre um cartão só (dá para compartilhar) com o bilhete de 10 viagens + 2 viagens suplentes do aeroporto.", tips: [{type:"transport", text:"<strong>Transporte do aeroporto:</strong> Metrô linha 8 → Nuevos Ministérios (dentro do aeroporto), depois Cercanía C4b → Sol. Use cartão de crédito para as cercanías; a Tarjeta Multi serve para metrô e ônibus."}] },
-      { time: "15:30", type: "highlight", title: "🏨 Hotel — deixe as malas", body: "Mesmo que o check-in ainda não esteja disponível, o hotel guarda as bagagens. Troque de roupa se necessário e saia logo." },
-      { time: "16:30", type: "highlight", title: "⚽ Tour Santiago Bernabéu", body: "O estádio mais icônico do futebol mundial. O tour dura cerca de 1h30–2h e custa <strong>€45</strong>. Tem horários fixos, então não atrase.", tips: [{type:"warn", text:"Reserve o ingresso antecipadamente no site do Real Madrid para garantir o horário das 16:30."}] },
-      { time: "18:40", type: "highlight", title: "⛲ Fuente Cibeles", body: "A fonte favorita dos torcedores do Real Madrid para celebrar títulos — fica no cruzamento da movimentada Calle Alcalá. Ao lado está o imponente <strong>Palácio Cibeles</strong>, hoje sede da prefeitura." },
-      { time: "18:50", type: "highlight", title: "🏛️ Puerta de Alcalá", body: "O antigo portão de entrada da cidade, construído em 1778. Perfeito para fotos, especialmente ao entardecer com a luz dourada." },
-      { time: "19:07", type: "highlight", title: "🌿 Parque de El Retiro", body: "Um dos parques mais bonitos da Europa. Vá direto ao <strong>Lago Grande</strong> para a foto clássica com o <strong>Monumento a Alfonso XII</strong>. Se sobrar tempo, desvie pelo <strong>Palácio de Cristal</strong> — um pequeníssimo palácio todo de vidro dentro do parque." },
-      { time: "19:35", type: "highlight", title: "🏢 Edifício Metrópolis", body: "O prédio mais fotografado de Madrid, na esquina da Calle Alcalá com Gran Vía. A cúpula de cobre verde é inconfundível. Fique na calçada oposta para a melhor foto." },
-      { time: "19:50", type: "highlight", title: "☀️ Plaza del Sol", body: "O coração de Madrid e o quilômetro zero de todas as estradas espanholas. Sempre movimentada, com artistas de rua e a famosa estátua do Urso com o Morangueiro." },
-      { time: "20:10", type: "highlight", title: "🏰 Plaza Mayor", body: "Uma das praças mais bonitas da Europa, com arquitetura do século XVII. À noite, com as luzes acesas, fica ainda mais bonita. Bom lugar para sentar e apreciar a arquitetura.", tips: [{type:"warn", text:"Evite comer nos restaurantes com mesa na praça — são bem caros e mediocres. Guarde o apetite para a chocolateria."}] },
-      { time: "20:35", type: "highlight", title: "☕ Chocolatería San Ginés <span class='badge badge-must'>Obrigatório</span>", body: "Uma das mais antigas da cidade, fundada em 1894. Peça os <strong>churros</strong> (finos e crocantes) ou as <strong>porras</strong> (mais grossas e macias) com chocolate quente espesso para mergulhar. É uma experiência à parte.", tips: [{type:"food", text:"<strong>O que pedir:</strong> Churros com chocolate quente (€5–6). Vá de barriga vazia — você vai querer pedir mais de uma rodada. Fica aberto 24h!"}] },
-      { time: "21:30", type: "highlight", title: "👑 Palácio Real de Madrid", body: "A maior residência real da Europa ocidental. À noite, iluminado, fica de tirar o fôlego. Vale passar pela <strong>Catedral de Almudena</strong> logo em frente — a fachada é espetacular com as luzes noturnas. O sol se põe por volta das 21h nessa época." },
-    ],
-    food: {
-      title: "🍽️ Onde comer em Madrid",
-      items: [
-        { name: "Churros na Chocolatería San Ginés", desc: "A experiência mais icônica de Madrid. Churros ou porras com chocolate espesso. Aberta 24h, frequentada por madrilenos de madrugada.", price: "€5–7 por pessoa" },
-        { name: "Tapas nos bares ao redor da Plaza del Sol", desc: "Patatas bravas, croquetas de jamón, pan con tomate. Procure bares lotados de locais — sinal de qualidade. Evite os com cardápio em inglês na porta.", price: "€2–4 por tapa" },
-        { name: "Bocadillo de Calamares", desc: "O sanduíche típico de Madrid: pão de baguete com lulas fritas. Parece simples mas é uma instituição. Encontrado em bares ao redor da Plaza Mayor.", price: "€3–5" },
-        { name: "McDonalds na Plaza del Sol", desc: "Opção prática para quem está cansado da viagem. O McDonalds na Plaza del Sol é famoso por ficar em um prédio histórico — uma experiência estranha e única.", price: "€8–10" },
-      ]
-    }
-  },
+const D=[
+  {id:1,city:"Madrid",em:"🇪🇸",date:"Seg, 27 abr 2026",t1:"Chegada ao",t2:"Velho Continente",ti:1,
+  intro:"Vocês chegam em Madrid no início da tarde — ainda com energia para explorar a capital espanhola. Fuso: CEST +2 (6h à frente de Campo Grande). Deixem as malas no hotel, calcem o sapato mais confortável e saiam para a cidade.",
+  ev:[
+    {hl:1,time:"12:15",title:"✈️ Chegada em Madrid (MAD)",body:"Ao desembarcar, procure as máquinas da <strong>Tarjeta Multi</strong> — compre um cartão só (dá para compartilhar) com bilhete de 10 viagens + 2 suplentes do aeroporto.",tips:[{t:"transport",i:"🚇",x:"<strong>Do aeroporto:</strong> Metrô linha 8 → Nuevos Ministérios, depois Cercanía C4b → Sol. Use cartão de crédito para as cercanías; Tarjeta Multi vale para metrô e ônibus."}]},
+    {hl:1,time:"15:30",title:"🏨 Hotel — deixe as malas",body:"Mesmo sem check-in disponível, o hotel guarda as bagagens. Troque de roupa e saia logo."},
+    {hl:1,time:"16:30",title:"⚽ Tour Santiago Bernabéu",bgs:["paid"],body:"O estádio mais icônico do futebol mundial. Duração: 1h30–2h. <strong>€45 por pessoa</strong>.",tips:[{t:"warn",i:"⚠️",x:"Reserve antecipadamente no site do Real Madrid para o horário das 16:30."}]},
+    {hl:1,time:"18:40",title:"⛲ Fuente Cibeles",body:"A fonte onde o Real Madrid celebra títulos. Ao lado está o imponente <strong>Palácio Cibeles</strong> — sede da prefeitura, deslumbrante à noite."},
+    {hl:1,time:"18:50",title:"🏛️ Puerta de Alcalá",body:"O antigo portão da cidade (1778). Perfeito para fotos com a luz dourada do entardecer."},
+    {hl:1,time:"19:07",title:"🌿 Parque de El Retiro",body:"Um dos mais bonitos da Europa. Vão direto ao <strong>Lago Grande</strong> para a foto com o <strong>Monumento a Alfonso XII</strong>. Com tempo extra, desvie pelo <strong>Palácio de Cristal</strong> — um palácio todo de vidro dentro do parque."},
+    {hl:1,time:"19:35",title:"🏢 Edifício Metrópolis",body:"O prédio mais fotografado de Madrid, na esquina da Calle Alcalá com Gran Vía. Fique na calçada oposta para a melhor foto da cúpula de cobre verde."},
+    {hl:1,time:"19:50",title:"☀️ Plaza del Sol",body:"O coração de Madrid e o km zero de todas as estradas espanholas. A estátua do Urso com o Morangueiro é o símbolo da cidade."},
+    {hl:1,time:"20:10",title:"🏰 Plaza Mayor",body:"Arquitetura do séc. XVII à noite iluminada.",tips:[{t:"warn",i:"⚠️",x:"Evite os restaurantes com mesa na praça — caros e medíocres. Guarde o apetite para a chocolatería."}]},
+    {hl:1,time:"20:35",title:"☕ Chocolatería San Ginés",bgs:["must"],body:"Fundada em 1894. Peça os <strong>churros</strong> (finos, crocantes) ou <strong>porras</strong> (grossas, macias) com chocolate quente espesso para mergulhar.",tips:[{t:"food",i:"🍽️",x:"Churros com chocolate: €5–6. Aberta 24h — os madrilenos vêm aqui de madrugada!"}]},
+    {hl:1,time:"21:30",title:"👑 Palácio Real de Madrid",body:"A maior residência real da Europa ocidental. À noite, iluminado, é de tirar o fôlego. A <strong>Catedral de Almudena</strong> em frente também vale a foto. Sol se põe ~21h."},
+  ],
+  food:[
+    {n:"Churros na Chocolatería San Ginés",d:"A experiência mais icônica de Madrid. Churros ou porras com chocolate espesso. Aberta 24h.",p:"€5–7 por pessoa"},
+    {n:"Bocadillo de Calamares",d:"Baguete com lulas fritas. Uma instituição em bares ao redor da Plaza Mayor.",p:"€3–5"},
+    {n:"Tapas nos bares ao redor da Plaza del Sol",d:"Patatas bravas, croquetas de jamón, pan con tomate. Procure bares lotados de locais.",p:"€2–4 por tapa"},
+    {n:"McDonalds na Plaza del Sol",d:"Fica em um prédio histórico — experiência única e estranha em Madrid.",p:"€8–10"},
+  ]},
 
-  {
-    id: 2,
-    label: "Dia 2",
-    city: "Roma",
-    title: "La Città Eterna",
-    date: "Terça-feira, 28 de abril de 2026",
-    emoji: "🇮🇹",
-    intro: "Bom dia de madrugada! Hoje é um dia intenso: vocês voam de Madrid para Roma e têm um dia inteiro para ver os pontos mais icônicos da capital italiana. Preparem-se para mais de 10km a pé em paralelepípedos romanos — escolham sapatos confortáveis, e não abram mão deles.",
-    events: [
-      { time: "03:40", type: "highlight", title: "🌙 Saída do hotel em Madrid", body: "Saia bem antes de todos acordarem. Pegue o ônibus expresso 203 na Plaza Cibeles até o aeroporto.", tips: [{type:"transport", text:"O ônibus 203 sai de Cibeles e vai direto ao aeroporto. Roda 24h e custa cerca de €5."}] },
-      { time: "05:55", type: "highlight", title: "✈️ Voo Madrid → Roma", body: "Embarque em Madrid. Chegada em Roma Fiumicino às 8:20." },
-      { time: "08:20", type: "highlight", title: "🛬 Chegada em Roma Fiumicino (FCO)", body: "Após desembarcar, siga para a área de trens dentro do aeroporto.", tips: [{type:"transport", text:"<strong>Leonardo Express:</strong> Trem direto aeroporto → Roma Termini, ~32 min. Compre antes no app Trenitalia (~€14). Se comprar na hora, valide o bilhete antes de embarcar. Na Termini, o metrô está no mesmo prédio — siga os painéis 'Metro'."}] },
-      { time: "10:08", type: "highlight", title: "🏨 Hotel — deixe as malas", body: "Check-in formal pode não estar disponível, mas o hotel guarda as bagagens. Troque de roupa e saia logo — o dia é longo e maravilhoso." },
-      { time: "10:40", type: "highlight", title: "⛪ Basílica de São Pedro <span class='badge badge-free'>Gratuito</span>", body: "A maior basílica do mundo, no coração do Vaticano. Com apenas 30 minutos, foque no interior: a <strong>nave central</strong>, a <strong>Pietà de Michelangelo</strong> e o magnífico <strong>Baldaquino de Bernini</strong>. Subir à cúpula (pago) é opcional.", tips: [{type:"warn", text:"Roupas que cubram os ombros e joelhos são obrigatórias para entrar. Sem isso, não entra."}] },
-      { time: "11:21", type: "highlight", title: "🏰 Castelo de Sant'Angelo", body: "Mausoléu do imperador Adriano convertido em fortaleza papal. Se o tempo for curto, vale pelo menos admirar do exterior e atravessar a <strong>Ponte Sant'Angelo</strong> com seus anjos barrocos — é uma das vistas mais fotogênicas de Roma." },
-      { time: "11:45", type: "highlight", title: "🎨 Piazza Navona", body: "Uma das praças mais bonitas da Europa, construída sobre um estádio romano do século I. Três fontes monumentais — a central é a <strong>Fontana dei Quattro Fiumi</strong> de Bernini. Músicos e artistas de rua animam o ambiente.", tips: [{type:"warn", text:"Evite todos os restaurantes com cardápio plastificado e garçom na porta da praça — caros e ruins. Guarde o apetite para o almoço."}] },
-      { time: "12:09", type: "highlight", title: "🏛️ Pantheon", body: "Construído em 125 d.C., é o edifício mais bem preservado da Antiguidade. A cúpula com óculo central deixa a chuva entrar — e tem um ralo no chão. Túmulos de Rafael e de reis italianos ficam aqui.", tips: [{type:"info", text:"Entrada ~€5. Se a fila estiver longa, calcule o tempo de almoço — o exterior já é incrível."}] },
-      { time: "12:18", type: "highlight", title: "✨ Chiesa di Sant'Ignazio di Loyola <span class='badge badge-free'>Gratuito</span>", body: "Uma joia escondida do barroco. A cúpula pintada por Andrea Pozzo (1694) é um <em>trompe-l'œil</em> magistral — parece tridimensional mas é completamente plana. Procure o disco de mármore no chão para o ângulo perfeito de observação." },
-      { time: "12:30", type: "highlight", title: "🍝 Almoço — Região do Pantheon", body: "Hora de comer bem! Afaste-se 2–3 quarteirões da piazza para preços mais honestos. Veja as sugestões abaixo." },
-      { time: "14:10", type: "highlight", title: "🏟️ Coliseu", body: "O anfiteatro mais famoso do mundo, com capacidade original para 50.000 espectadores. As galerias subterrâneas ficam abertas com ingresso especial. A estrutura vista de perto impressiona qualquer um.", tips: [{type:"warn", text:"Reserve o ingresso online antecipadamente — as filas são enormes. O ingresso inclui o Foro Romano."}] },
-      { time: "15:45", type: "highlight", title: "🏛️ Foro Romano", body: "O coração da Roma Antiga — o centro político, religioso e comercial por séculos. O Arco de Tito e o Templo de Saturno são destaques. Incluso no combo do Coliseu.", tips: [{type:"info", text:"Suba ao Palatino se a energia permitir — a vista do Foro de cima é deslumbrante e inclusa no combo."}] },
-      { time: "16:40", type: "highlight", title: "⛲ Fontana di Trevi", body: "A maior fonte barroca do mundo (1762). Segundo a tradição, jogar uma moeda por cima do ombro esquerdo com a mão direita garante o retorno a Roma. Às 16h o movimento já diminuiu bastante." },
-      { time: "17:13", type: "highlight", title: "🪜 Escadaria Espanhola (Trinità dei Monti)", body: "138 degraus construídos em 1725. Ao entardecer a luz dourada é cinematográfica.", tips: [{type:"warn", text:"<strong>Proibido sentar nos degraus</strong> — multa de ~€400. Suba até a chiesa no topo para uma vista panorâmica de Roma."}] },
-      { time: "17:55", type: "highlight", title: "🌇 Piazza del Popolo", body: "Uma das maiores praças de Roma. Dois obeliscos, três igrejas e a antiga entrada norte da cidade. Encerre o dia subindo ao terraço do <strong>Pincio</strong> (pela rampa lateral) para a panorâmica mais épica de Roma ao pôr do sol — às <strong>20:06</strong>.", tips: [{type:"food", text:"Tome um gelato aqui enquanto o sol se põe. Merecido após 10km+ andando!"}] },
-    ],
-    food: {
-      title: "🍝 Onde comer em Roma",
-      items: [
-        { name: "Che Pasta (Via di S. Agostino, 16)", desc: "Veja a massa fresca sendo feita através de uma janela. Entre o Pantheon e a Piazza Navona. Carbonara e cacio e pepe entre os destaques.", price: "€6–10 por prato" },
-        { name: "Ristorante Phanta Rei (Via della Minerva, 18/19)", desc: "Escondido atrás do Pantheon em uma viela — o que afasta os turistas. Porções generosas, qualidade italiana de verdade.", price: "€10–12 por prato" },
-        { name: "Taverna del Seminario (Via del Seminario, 105)", desc: "Menu completo (bruschetta + massa + prato principal + sobremesa) por preço fixo. Ótimo custo-benefício.", price: "€15 menu completo" },
-        { name: "Forno Roscioli — Opção rápida (Via dei Chiavari, 21)", desc: "Padaria-instituição romana. Peça a 'pizza bianca' — grossa, macia por dentro, crocante por fora, feita há 4 gerações. Coma de pé.", price: "€3–5" },
-        { name: "Nasoni — Água potável gratuita", desc: "Roma tem fontes de água potável espalhadas pelo centro histórico (as nasoni). Use-as à vontade, especialmente no calor.", price: "Gratuito" },
-      ]
-    }
-  },
+  {id:2,city:"Roma",em:"🇮🇹",date:"Ter, 28 abr 2026",t1:"La Città",t2:"Eterna",ti:1,
+  intro:"Bom dia de madrugada! Vocês voam de Madrid para Roma e têm um dia inteiro para ver os pontos mais icônicos da Cidade Eterna. Preparem-se para 10km+ a pé em paralelepípedos — escolham o sapato mais confortável.",
+  ev:[
+    {hl:1,time:"03:40",title:"🌙 Saída de Madrid",body:"Ônibus expresso 203 na Plaza Cibeles até o aeroporto. Roda 24h, ~€5."},
+    {hl:1,time:"08:20",title:"🛬 Chegada em Roma Fiumicino (FCO)",body:"Siga para os trens dentro do aeroporto.",tips:[{t:"transport",i:"🚇",x:"<strong>Leonardo Express:</strong> Aeroporto → Roma Termini, ~32 min. Compre no app Trenitalia (~€14). Se comprar na hora, valide antes de embarcar."}]},
+    {hl:1,time:"10:08",title:"🏨 Hotel — deixe as malas",body:"Check-in pode não estar disponível ainda. O hotel guarda as bagagens — troque de roupa e saia."},
+    {hl:1,time:"10:40",title:"⛪ Basílica de São Pedro",bgs:["free"],body:"A maior basílica do mundo. Com 30 min: <strong>Pietà de Michelangelo</strong> e o <strong>Baldaquino de Bernini</strong>.",tips:[{t:"warn",i:"⚠️",x:"Roupas cobrindo ombros e joelhos são obrigatórias. Sem isso, não entra."}]},
+    {hl:1,time:"11:21",title:"🏰 Castelo de Sant'Angelo",body:"Mausoléu de Adriano virado fortaleza papal. A <strong>Ponte Sant'Angelo</strong> com seus anjos barrocos é uma das vistas mais fotogênicas de Roma."},
+    {hl:1,time:"11:45",title:"🎨 Piazza Navona",body:"Construída sobre um estádio romano do séc. I. A <strong>Fontana dei Quattro Fiumi</strong> de Bernini é uma obra-prima.",tips:[{t:"warn",i:"⚠️",x:"Evite restaurantes com cardápio plastificado na beira da praça — caros e ruins."}]},
+    {hl:1,time:"12:09",title:"🏛️ Pantheon",bgs:["paid"],body:"Construído em 125 d.C. A cúpula com óculo central tem um ralo no chão para a chuva. Túmulos de Rafael e de reis italianos.",tips:[{t:"info",i:"ℹ️",x:"Entrada ~€5. O exterior já impressiona se a fila estiver longa."}]},
+    {hl:1,time:"12:18",title:"✨ Chiesa di Sant'Ignazio",bgs:["free"],body:"A cúpula de Pozzo (1694) é um <em>trompe-l'œil</em> magistral — completamente plana mas parece 3D. Procure o disco de mármore no chão."},
+    {hl:1,time:"12:30",title:"🍝 Almoço — Região do Pantheon",body:"Afaste-se 2–3 quarteirões para preços mais honestos. Veja as sugestões ao lado."},
+    {hl:1,time:"14:10",title:"🏟️ Coliseu",bgs:["paid"],body:"O anfiteatro mais famoso do mundo. Arena onde gladiadores combatiam.",tips:[{t:"warn",i:"⚠️",x:"Reserve online com antecedência — as filas são enormes. Ingresso inclui o Foro Romano."}]},
+    {hl:1,time:"15:45",title:"🏛️ Foro Romano",body:"O coração da Roma Antiga. Arco de Tito e Templo de Saturno são destaques. Incluso no combo.",tips:[{t:"info",i:"ℹ️",x:"Suba ao Palatino para a vista mais deslumbrante — incluso no ingresso."}]},
+    {hl:1,time:"16:40",title:"⛲ Fontana di Trevi",body:"A maior fonte barroca do mundo (1762). Jogue uma moeda por cima do ombro esquerdo para garantir o retorno."},
+    {hl:1,time:"17:13",title:"🪜 Escadaria Espanhola",body:"138 degraus (1725). Ao entardecer a luz dourada é cinematográfica.",tips:[{t:"warn",i:"⚠️",x:"Proibido sentar nos degraus — multa ~€400. Suba até a chiesa no topo."}]},
+    {hl:1,time:"17:55",title:"🌇 Piazza del Popolo",bgs:["must"],body:"Encerre o dia no terraço do <strong>Pincio</strong> — panorâmica mais épica de Roma ao pôr do sol (20:06). Tome um gelato merecido.",},
+  ],
+  food:[
+    {n:"Che Pasta (Via di S. Agostino, 16)",d:"Veja a massa fresca sendo feita pela janela. Carbonara e cacio e pepe.",p:"€6–10"},
+    {n:"Ristorante Phanta Rei (Via della Minerva, 18/19)",d:"Escondido atrás do Pantheon. Porções generosas, qualidade italiana.",p:"€10–12"},
+    {n:"Taverna del Seminario (Via del Seminario, 105)",d:"Menu completo por preço fixo: bruschetta + massa + prato + sobremesa.",p:"€15 menu completo"},
+    {n:"Forno Roscioli — Pizza Bianca",d:"Padaria-instituição. Pizza grossa macia por dentro e crocante por fora. Coma de pé.",p:"€3–5"},
+    {n:"Nasoni — Fontes de água",d:"Água potável gratuita espalhada pelo centro histórico. Indispensável no calor.",p:"Gratuito"},
+  ]},
 
-  {
-    id: 3,
-    label: "Dia 3",
-    city: "Munique",
-    title: "Capital da Bavária",
-    date: "Quarta-feira, 29 de abril de 2026",
-    emoji: "🇩🇪",
-    intro: "Hoje vocês deixam a Itália e voam para Munique, a capital da Bavária e cidade dos museus, cervejas e futebol. A chegada é pela manhã, então haverá tempo para museus e para visitar a lendária Allianz Arena.",
-    events: [
-      { time: "05:15", type: "highlight", title: "🌙 Saída do hotel em Roma", body: "Chame um Uber até a Termini e pegue o Leonardo Express para o aeroporto." },
-      { time: "09:05", type: "highlight", title: "🛬 Chegada em Munique (MUC)", body: "Do aeroporto, pegue o S-Bahn S8 direto para o centro da cidade.", tips: [{type:"transport", text:"S-Bahn S8: Aeroporto → Karlplatz (~40 min). Use um bilhete diário de transporte (Tageskarte) — cobre todos os meios de transporte públicos de Munique."}] },
-      { time: "10:31", type: "highlight", title: "🏨 Hotel Sendlinger Tor", body: "Deixe as malas. A região de Sendlinger Tor é excelente — você está a poucos minutos a pé da Marienplatz e do Viktualienmarkt." },
-      { time: "12:24", type: "highlight", title: "🚗 BMW Museum <span class='badge badge-paid'>Pago</span>", body: "Um dos museus de design industrial mais bonitos do mundo. A arquitetura futurista do prédio é tão impressionante quanto os carros. Explora a história da BMW desde 1916.", tips: [{type:"info", text:"Ingresso ~€10. Reserve cerca de 1h30 para o museu. O BMW Welt ao lado é gratuito e também espetacular."}] },
-      { time: "13:50", type: "highlight", title: "🍽️ Almoço perto do BMW Museum", body: "Aproveite a região para almoçar antes de ir à Allianz Arena." },
-      { time: "15:51", type: "highlight", title: "🔴 Allianz Arena — Tour", body: "A catedral do futebol bávaro, o estádio do Bayern de Munique. O tour inclui os vestiários, o campo e a área de imprensa. Última entrada para o tour: <strong>17:15</strong>. Museu fecha às 18:00.", tips: [{type:"warn", text:"Saindo pela estação Fröttmaning, são 15 minutos a pé até o estádio. Se estiver cansado, há ônibus na saída do metrô."}] },
-      { time: "18:18", type: "highlight", title: "🥩 Viktualienmarkt — Jantar", body: "O mercado gastronômico mais famoso de Munique. Perfeito para jantar com comida bávara autêntica. Cerveja no biergarten do mercado, salsichas, pretzel e tudo mais.", tips: [{type:"food", text:"<strong>O que pedir:</strong> Weisswurst (salsicha branca bávara com mostarda doce + pretzel), Obatzda (queijo cremoso com cerveja), Schnitzel. Cerveja Weißbier (de trigo) é a mais típica da Bavária."}] },
-    ],
-    food: {
-      title: "🥨 Onde comer em Munique",
-      items: [
-        { name: "Viktualienmarkt", desc: "O melhor lugar para experimentar tudo de uma vez. Bancas com Weisswurst, Obatzda, Schnitzel, e o biergarten central serve as 6 cervejarias de Munique em rodízio.", price: "€8–15 por pessoa" },
-        { name: "Weisswurst + Pretzel", desc: "A salsicinha branca bávara é servida quente, come-se sugando a carne para fora da pele, com mostarda doce e pretzel. Tradição sagrada da Bavária.", price: "€4–6" },
-        { name: "Döner Kebab", desc: "Munique tem excelentes kebabs turcos — opção rápida, barata e muito boa. Facilmente encontrado na região central.", price: "€5–7" },
-      ]
-    }
-  },
+  {id:3,city:"Munique",em:"🇩🇪",date:"Qua, 29 abr 2026",t1:"Capital",t2:"da Bavária",ti:0,
+  intro:"Vocês deixam a Itália e voam para Munique — a cidade das cervejas, dos museus e do Bayern. A chegada é de manhã, com tempo para o BMW Museum e a lendária Allianz Arena.",
+  ev:[
+    {hl:1,time:"09:05",title:"🛬 Chegada em Munique (MUC)",body:"S-Bahn S8 direto do aeroporto para o centro.",tips:[{t:"transport",i:"🚇",x:"S8: Aeroporto → Karlplatz (~40 min). Compre um Tageskarte (bilhete diário) — cobre todos os transportes."}]},
+    {hl:1,time:"10:31",title:"🏨 Hotel Sendlinger Tor",body:"Localização excelente — a minutos da Marienplatz e do Viktualienmarkt."},
+    {hl:1,time:"12:24",title:"🚗 BMW Museum",bgs:["paid"],body:"Um dos museus de design industrial mais bonitos do mundo. Arquitetura futurista tão impressionante quanto os carros.",tips:[{t:"info",i:"ℹ️",x:"Ingresso ~€10. O BMW Welt ao lado é gratuito e espetacular. Reserve ~1h30."}]},
+    {hl:1,time:"13:50",title:"🍺 Almoço perto do BMW Museum",body:"Aproveite a região antes de partir para a Allianz Arena."},
+    {hl:1,time:"15:51",title:"🔴 Allianz Arena — Tour",bgs:["paid"],body:"A catedral do futebol bávaro. Tour com vestiários, campo e área de imprensa. <strong>Última entrada: 17:15.</strong>",tips:[{t:"transport",i:"🚇",x:"Saída Fröttmaning: 15 min a pé até o estádio, ou ônibus na saída do metrô."}]},
+    {hl:1,time:"18:18",title:"🥩 Viktualienmarkt — Jantar",bgs:["must"],body:"O mercado gastronômico mais famoso de Munique. Biergarten, salsichas, pretzel e cerveja bávara.",tips:[{t:"food",i:"🍽️",x:"<strong>Peça:</strong> Weisswurst com mostarda doce + pretzel, Obatzda (queijo cremoso com cerveja), Weißbier gelado."}]},
+  ],
+  food:[
+    {n:"Weisswurst + Pretzel",d:"Salsicha branca bávara — suga-se a carne para fora da pele, com mostarda doce. Tradição sagrada.",p:"€4–6"},
+    {n:"Obatzda",d:"Patê cremoso de queijo bávaro com cerveja e cebolinha. Servido com pretzel.",p:"€4–6"},
+    {n:"Biergarten am Viktualienmarkt",d:"O único biergarten do centro com as 6 cervejarias de Munique em rodízio.",p:"€5–8 a cerveja"},
+    {n:"Döner Kebab",d:"Munique tem excelentes kebabs turcos — rápido, barato e muito bom.",p:"€5–7"},
+  ]},
 
-  {
-    id: 4,
-    label: "Dia 4",
-    city: "Car Trip",
-    title: "Castelos, Montanhas e Innsbruck",
-    date: "Quinta-feira, 30 de abril de 2026",
-    emoji: "🏔️",
-    intro: "O dia mais épico da viagem! Peguem um carro em Munique de manhã cedo e partam para um road trip pelos Alpes: Füssen, o castelo de Neuschwanstein, Leermos na fronteira com a Áustria, e Innsbruck — com subida de teleférico até as montanhas nevadas.",
-    events: [
-      { time: "06:51", type: "highlight", title: "🚗 Alamo — Retirada do carro", body: "A loja abre às 7h. Antes de sair, <strong>avise a locadora que vocês vão cruzar a fronteira com a Áustria</strong>. Pergunte sobre correntes para neve e como devolver o carro fora do horário.", tips: [{type:"warn", text:"<strong>Antes de partir:</strong> Compre o Vignette austríaco (pedágio) digitalmente pelo app ASFINAG (~€11,50 por 10 dias) ou em postos com o selo ASFINAG na fronteira. Procure o posto Lge Liquid Gas Energy ainda em Füssen, na B17."}, {type:"transport", text:"<strong>Velocidades:</strong> Área urbana: 50km/h. B12 (não-autobahn): máx 100km/h. A96 (autobahn): 130km/h recomendado, muitos trechos sem limite."}] },
-      { time: "09:50", type: "highlight", title: "🏘️ Füssen — Centrinho histórico", body: "Pequena cidade bávara de conto de fadas. Caminhe pelo centro para ver as casinhas estilo enxaimel e o <strong>Hohe Schloss</strong> (Castelo Alto, séc. XV) acima das casas. Passe pela Igreja St. Mang.", tips: [{type:"food", text:"<strong>Coma aqui!</strong> Vocês terão pouco tempo depois. Na Backery Höfler: Apfelstrudel (torta de maçã) e Schneeball. Para as famosas Schneeball, vá à <strong>Stefanie Diller Schneeballenträume</strong> — a melhor de Füssen."}] },
-      { time: "11:18", type: "highlight", title: "🌉 Ponte Marienbrücke", body: "O ônibus do castelo (~€5 ida e volta) sobe a montanha e para aqui. A pont oferece a <strong>vista mais fotogênica do Castelo Neuschwanstein</strong> — você o vê de cima, emoldurado pelo vale e pelas montanhas.", tips: [{type:"warn", text:"O ônibus passa a cada 20 minutos. Se perder um, vá ao lago Alpsee enquanto espera."}] },
-      { time: "11:38", type: "highlight", title: "👀 Jugend — Vista panorâmica", body: "A meio caminho do castelo, há uma plataforma com uma vista <em>incrível</em> para o vale e o Castelo Hohenschwangau. Não pule este ponto." },
-      { time: "11:50", type: "highlight", title: "🏰 Castelo Neuschwanstein", body: "O castelo que inspirou o da Disney. Construído pelo rei Luís II da Bavária no século XIX. Vocês não vão entrar, mas veja de perto a entrada para sentir a escala e a magia do lugar." },
-      { time: "12:40", type: "highlight", title: "🏞️ Lago Alpsee", body: "Um lago de montanha cristalino com vista para os castelos ao fundo. Perfeito para fotos e para respirar o ar alpino antes de continuar." },
-      { time: "13:40", type: "highlight", title: "🏔️ Leermos, Áustria — Zugspitze", body: "Pare no posto Shell próximo à Eisenbahnbrücke Ehrwald para admirar e fotografar a <strong>Zugspitze</strong> — o pico mais alto da Alemanha, com 2.962m. A vista é impressionante.", tips: [{type:"info", text:"Koordinadas: Eisenbahnbrücke Ehrwald — fácil de encontrar no Google Maps por esse nome."}] },
-      { time: "15:30", type: "highlight", title: "🎶 Innsbruck — Chegada", body: "Capital do Tirol austríaco, a 'Ponte sobre o rio Inn'. Estacione no <strong>Altstadtgarage</strong> (~€3,40/hora)." },
-      { time: "15:40", type: "highlight", title: "🏘️ Aldstadt (Distrito Histórico)", body: "Caminhe pelo centro histórico medieval. Veja o rio <strong>Inn</strong> de cor esmeralda — dá o nome à cidade. Procure o <strong>Goldenes Dachl</strong> (Telhado Dourado) — uma varanda coberta com 2.657 telhas de cobre dourado, encomendada pelo imperador Maximiliano I no séc. XV." },
-      { time: "15:50", type: "highlight", title: "🌊 Marktplatz", body: "Logo acima da garagem, fotografe o cartão-postal mais icônico de Innsbruck: as casas coloridas do bairro <strong>Mariahilf</strong> refletindo no rio Inn." },
-      { time: "16:40", type: "highlight", title: "🚡 Seegrube — Cordilheira Nordkette <span class='badge badge-must'>Imperdível</span>", body: "Vá até a estação Altstadt e compre o ingresso <strong>Top of Innsbruck</strong>. O teleférico Hungerburgbahn sobe até Hungerburg, depois o teleférico vai até Seegrube (~2.256m). Neve garantida, vista épica da cidade lá embaixo.", tips: [{type:"warn", text:"Roupas de frio são essenciais lá em cima, mesmo em maio. Leve casaco."}, {type:"food", text:"Jantar lá em cima é possível mas caro. Melhor descer e jantar na cidade antes de voltar para Munique."}] },
-      { time: "21:00", type: "highlight", title: "🚗 Saída de Innsbruck", body: "Saiam às 21h no máximo. Abasteçam o carro perto de Munique antes de devolver.", tips: [{type:"warn", text:"O carro deve ser devolvido até 23:30 na Hauptbahnhof. Se a loja estiver fechada, eles indicam onde parar e deixar a chave."}] },
-    ],
-    food: {
-      title: "🍺 Onde comer no caminho",
-      items: [
-        { name: "Füssen — Bakery Höfler ou Stefanie Diller", desc: "Café da manhã ou lanche reforçado antes dos castelos. Apfelstrudel (torta de maçã), Schneeball (bola de neve) e Kaiserschmarrn (tiras de panqueca doce).", price: "€4–8" },
-        { name: "Innsbruck — Würstelstand (barraca de salsichas)", desc: "Rápido e típico austríaco. Salsichas quentes com mostarda e pão. Fácil de encontrar no centro histórico.", price: "€3–5" },
-        { name: "Innsbruck — Kebab ou Döner", desc: "Para quem precisa comer rápido antes de subir no teleférico.", price: "€5–7" },
-      ]
-    }
-  },
+  {id:4,city:"Alps Road Trip",em:"🏔️",date:"Qui, 30 abr 2026",t1:"Castelos,",t2:"Alpes & Innsbruck",ti:0,
+  intro:"O dia mais épico da viagem! Road trip pelos Alpes: Füssen, Neuschwanstein (o castelo que inspirou a Disney), parada na fronteira para a Zugspitze e Innsbruck com teleférico até as montanhas nevadas.",
+  ev:[
+    {hl:1,time:"06:51",title:"🚗 Alamo — Retirada do carro",body:"A loja abre às 7h. <strong>Avise que vão cruzar a fronteira com a Áustria.</strong> Pergunte sobre correntes de neve e como devolver fora do horário.",tips:[{t:"warn",i:"⚠️",x:"<strong>Vignette austríaca:</strong> Compre pelo app ASFINAG antes de cruzar (~€11,50/10 dias) ou no posto Lge Liquid Gas Energy em Füssen, na B17."},{t:"transport",i:"🚇",x:"<strong>Velocidades:</strong> Área urbana: 50km/h. B12: máx 100km/h. A96 (autobahn): 130km/h recomendado."}]},
+    {hl:1,time:"09:50",title:"🏘️ Füssen — Centrinho histórico",body:"Cidade bávara de conto de fadas com casinhas estilo enxaimel e o <strong>Hohe Schloss</strong> acima.",tips:[{t:"food",i:"🍽️",x:"<strong>Coma aqui!</strong> Bakery Höfler: Apfelstrudel e Schneeball. Melhor Schneeball: <strong>Stefanie Diller Schneeballenträume</strong>."}]},
+    {hl:1,time:"11:18",title:"🌉 Ponte Marienbrücke",bgs:["must"],body:"Ônibus até a montanha (~€5 ida e volta). A <strong>vista mais fotogênica do Neuschwanstein</strong> — emoldurado pelo vale e pelas montanhas.",tips:[{t:"info",i:"ℹ️",x:"Ônibus a cada 20 min. Se perder um, vá ao lago Alpsee enquanto aguarda."}]},
+    {hl:1,time:"11:38",title:"👀 Jugend — Vista panorâmica",body:"Plataforma a meio caminho do castelo com vista incrível para o vale e o Castelo Hohenschwangau. Não pule!"},
+    {hl:1,time:"11:50",title:"🏰 Castelo Neuschwanstein",body:"O castelo que inspirou a Disney, construído pelo Rei Luís II. Não vão entrar — chegue à entrada para sentir a escala e a magia."},
+    {hl:1,time:"12:40",title:"🏞️ Lago Alpsee",body:"Lago cristalino com vista para os castelos ao fundo. Foto perfeita e ar alpino puro."},
+    {hl:1,time:"13:40",title:"🏔️ Leermos — Zugspitze",body:"Pare no posto Shell próximo à <em>Eisenbahnbrücke Ehrwald</em> para fotografar a <strong>Zugspitze</strong> (2.962m) — o pico mais alto da Alemanha."},
+    {hl:1,time:"15:30",title:"🎶 Innsbruck — Chegada",body:"Capital do Tirol. Estacione no <strong>Altstadtgarage</strong> (~€3,40/hora). Centro histórico medieval logo acima."},
+    {hl:1,time:"15:40",title:"🏘️ Aldstadt + Goldenes Dachl",body:"Rio <strong>Inn</strong> de cor esmeralda que dá nome à cidade. O <strong>Goldenes Dachl</strong> (Telhado Dourado) — 2.657 telhas de cobre dourado do séc. XV."},
+    {hl:1,time:"15:50",title:"📸 Marktplatz",body:"Fotografe as casas coloridas do bairro <strong>Mariahilf</strong> refletidas no rio esmeralda — o cartão-postal mais icônico de Innsbruck."},
+    {hl:1,time:"16:40",title:"🚡 Seegrube — Nordkette",bgs:["must"],body:"Estação Aldstadt → teleférico até Hungerburg → Seegrube (~2.256m). Neve em maio garantida, vista épica da cidade.",tips:[{t:"warn",i:"⚠️",x:"Leve casaco — faz frio lá em cima mesmo em maio."},{t:"food",i:"🍽️",x:"Jantem ao descer. Comer no topo é possível mas caro."}]},
+    {hl:1,time:"21:00",title:"🚗 Saída de Innsbruck",body:"Saiam às 21h no máximo. Abasteçam perto de Munique antes de devolver o carro até 23:30.",tips:[{t:"warn",i:"⚠️",x:"Se a loja estiver fechada, eles indicam onde parar e deixar a chave."}]},
+  ],
+  food:[
+    {n:"Füssen — Apfelstrudel / Schneeball",d:"Café reforçado antes dos castelos. Melhor Schneeball: Stefanie Diller Schneeballenträume.",p:"€4–8"},
+    {n:"Innsbruck — Würstelstand",d:"Barraca de salsichas quentes com mostarda e pão. Rápido, típico e austríaco.",p:"€3–5"},
+    {n:"Innsbruck — Döner Kebab",d:"Opção rápida antes de subir no teleférico.",p:"€5–7"},
+  ]},
 
-  {
-    id: 5,
-    label: "Dia 5",
-    city: "Munique",
-    title: "Munique Histórica",
-    date: "Sexta-feira, 1 de maio de 2026",
-    emoji: "🏛️",
-    intro: "Último dia em Munique antes de voar para Amsterdã à tarde. Comecem o dia com uma caminhada no Englischer Garten e terminem explorando o coração histórico da cidade — Marienplatz, Viktualienmarkt e a incrível Asamkirche.",
-    events: [
-      { time: "08:47", type: "highlight", title: "🌳 Englischer Garten", body: "Um dos maiores parques urbanos do mundo — maior que o Central Park. Comece pela <strong>Eisbachwelle</strong>, o canal onde bávaros surfam o ano inteiro (mesmo no inverno). Depois siga ao <strong>Monopteros</strong> (templo grego no alto de uma colina) e à pagoda chinesa no <strong>Biergarten am Chinesischen Turm</strong>.", tips: [{type:"info", text:"Se quiser tomar uma cerveja de manhã no biergarten — é normal na Alemanha e faz parte da experiência bávara!"}] },
-      { time: "10:10", type: "highlight", title: "🏛️ Odeonplatz", body: "Praça histórica com a <strong>Feldherrnhalle</strong> — onde Hitler fracassou no Putsch de 1923 e onde depois foi erguido um santuário nazista. Encontre o rastro de pedras douradas na <strong>Viscardigasse</strong> (Beco dos Desertores) — homenagem a quem desviava para não fazer a saudação nazista.", tips: [{type:"info", text:"A <strong>Theatinerkirche</strong> ali ao lado é a primeira igreja barroca da Bavária — vale entrar para ver o interior amarelo e branco. A <strong>Residenz München</strong> (antigo palácio real) também fica aqui."}] },
-      { time: "10:34", type: "highlight", title: "🍺 Hofbräuhaus", body: "A cervejaria mais famosa do mundo, fundada em 1589. Palco de eventos históricos, inclusive o primeiro grande discurso de Hitler em 1920. A cerveja ainda segue a <em>Reinheitsgebot</em> de 1516. Não precisam ficar — apenas passar na frente e absorver a história já é suficiente pelo tempo.", tips: [{type:"info", text:"A cerveja servida aqui inclui só água, malte, lúpulo e levedura — desde a Lei da Pureza Bávara de 1516."}] },
-      { time: "10:47", type: "highlight", title: "⭐ Marienplatz", body: "O coração de Munique desde 1158. Destaques: <strong>Neues Rathaus</strong> (carrilhão toca às 11h e 12h!), <strong>Mariensäule</strong> (coluna de 1638 em homenagem ao fim da ocupação sueca) e a <strong>Fonte do Peixe</strong> (Fischbrunnen).", tips: [{type:"warn", text:"Estejam na praça às 11h para ver o carrilhão do Neues Rathaus — bonecos mecânicos dançam por 12 minutos!"}] },
-      { time: "11:10", type: "highlight", title: "⛪ St. Peter Kirche", body: "A torre tem 91 metros e oferece uma das melhores vistas de Munique — em dias claros, dá para ver os Alpes.", tips: [{type:"info", text:"Subida ~€5, aceita apenas dinheiro. Mais de 300 degraus. Vale cada um."}] },
-      { time: "11:54", type: "highlight", title: "🥩 Viktualienmarkt — Almoço", body: "O mercado gastronômico mais famoso de Munique. No centro, o único biergarten que serve alternadamente as 6 grandes cervejarias. O <strong>Maibaum</strong> (Mastro de Maio) decorado no centro é um ícone.", tips: [{type:"food", text:"<strong>O que comer:</strong> Weisswurst com pretzel e mostarda doce, Obatzda (patê de queijo bávaro com cerveja e cebolinha), Leberkäse (um tipo de embutido frito em pão)."}] },
-      { time: "13:48", type: "highlight", title: "🕍 Asamkirche <span class='badge badge-free'>Gratuito</span>", body: "Uma das igrejas barrocas mais exuberantes e compactas do mundo, construída pelos irmãos Asam (1746). A decoração é tão densa que parece que as paredes respiram. A porta fica fechada mas pode ser aberta — empurre com força.", tips: [{type:"warn", text:"É só pesada. Não está trancada. Empurre com mais força."}] },
-      { time: "15:35", type: "highlight", title: "✈️ Partida para Amsterdã", body: "Peguem o S8 na Karlsplatz até o aeroporto. Voo KL1856 às 17:45, chegada em Amsterdã às 19:20.", tips: [{type:"transport", text:"S8 direto Karlsplatz → Aeroporto (~40 min). Saiam com tempo de sobra."}] },
-      { time: "20:04", type: "highlight", title: "🏨 Hotel Ben Centre — Amsterdã", body: "Bem-vindos à Holanda! Descansem — amanhã é dia de canais, Van Gogh e Heineken." },
-    ],
-    food: {
-      title: "🥨 Comer em Munique antes do voo",
-      items: [
-        { name: "Viktualienmarkt", desc: "Melhor opção para almoço com custo-benefício e autenticidade. Biergarten central, bancas de queijos, embutidos, frutas e pratos prontos.", price: "€8–15" },
-        { name: "Café ou padaria bávara", desc: "Para café da manhã: Breze (pretzel), Butter-Semmel (pãozinho com manteiga) ou Weisswurst — o café da manhã bávaro clássico.", price: "€4–7" },
-      ]
-    }
-  },
+  {id:5,city:"Munique",em:"🏛️",date:"Sex, 1 mai 2026",t1:"Munique",t2:"Histórica",ti:0,
+  intro:"Último dia em Munique antes de voar para Amsterdã. Englischer Garten com surfistas, Marienplatz, a famosa Hofbräuhaus e a exuberante Asamkirche.",
+  ev:[
+    {hl:1,time:"08:47",title:"🌳 Englischer Garten",bgs:["must"],body:"Maior que o Central Park. Comece pela <strong>Eisbachwelle</strong> — o canal onde bávaros surfam o ano todo. Depois: <strong>Monopteros</strong> (templo grego na colina) e a pagoda chinesa."},
+    {hl:1,time:"10:10",title:"🏛️ Odeonplatz",body:"Onde Hitler fracassou no Putsch de 1923. O rastro de pedras douradas na <strong>Viscardigasse</strong> (Beco dos Desertores) homenageia quem desviava para não fazer a saudação nazista.",tips:[{t:"info",i:"ℹ️",x:"A Theatinerkirche ao lado é a 1ª igreja barroca da Bavária. A Residenz München (palácio real) também fica aqui."}]},
+    {hl:1,time:"10:34",title:"🍺 Hofbräuhaus",body:"A cervejaria mais famosa do mundo, fundada em 1589. Cerveja ainda segue a <em>Reinheitsgebot</em> de 1516. Pelo tempo curto, apenas passe em frente."},
+    {hl:1,time:"10:47",title:"⭐ Marienplatz",bgs:["must"],body:"O coração de Munique desde 1158. O <strong>carrilhão do Neues Rathaus toca às 11h e 12h</strong> — bonecos mecânicos dançam por 12 minutos!",tips:[{t:"warn",i:"⚠️",x:"Estejam na praça às 11h para ver o carrilhão."}]},
+    {hl:1,time:"11:10",title:"⛪ St. Peter Kirche",bgs:["paid"],body:"Torre de 91m com uma das melhores vistas de Munique — em dias claros dá para ver os Alpes.",tips:[{t:"info",i:"ℹ️",x:"Subida ~€5. <strong>Só aceita dinheiro.</strong> Mais de 300 degraus."}]},
+    {hl:1,time:"11:54",title:"🥩 Viktualienmarkt — Almoço",bgs:["must"],body:"O mercado gastronômico mais famoso de Munique. O <strong>Maibaum</strong> (Mastro de Maio) no centro é um ícone. Biergarten servindo as 6 cervejarias."},
+    {hl:1,time:"13:48",title:"🕍 Asamkirche",bgs:["free"],body:"Igreja barroca dos irmãos Asam (1746). Decoração tão densa que as paredes parecem respirar.",tips:[{t:"warn",i:"⚠️",x:"A porta fica fechada mas não está trancada — empurre com força."}]},
+    {hl:1,time:"15:35",title:"✈️ Partida para Amsterdã",body:"S8 na Karlsplatz até o aeroporto. Voo KL1856 às 17:45 → Amsterdã 19:20.",tips:[{t:"transport",i:"🚇",x:"S8 direto Karlsplatz → Aeroporto (~40 min). Saiam com folga."}]},
+    {hl:1,time:"20:04",title:"🏨 Hotel Ben Centre — Amsterdã",body:"Bem-vindos à Holanda! Descansem — amanhã é dia de canais e Heineken."},
+  ],
+  food:[
+    {n:"Weisswurst + Pretzel no Viktualienmarkt",d:"Com mostarda doce. O café da manhã bávaro clássico.",p:"€4–7"},
+    {n:"Obatzda com Weißbier",d:"Queijo cremoso bávaro com cerveja de trigo gelada no biergarten do mercado.",p:"€8–12"},
+    {n:"Biergarten am Chinesischen Turm",d:"Cerveja bávara de manhã no Englischer Garten — completamente normal aqui.",p:"€5–8"},
+  ]},
 
-  {
-    id: 6,
-    label: "Dia 6",
-    city: "Amsterdã",
-    title: "Canais, Cerveja e Cultura",
-    date: "Sábado, 2 de maio de 2026",
-    emoji: "🇳🇱",
-    intro: "Amsterdã é uma cidade mágica de canais, casas estreitas e inclinas, bicicletas por toda parte e uma cultura rica. Hoje vocês visitam a Casa de Anne Frank, a Heineken Experience e ainda fazem um cruzeiro pelos canais.",
-    events: [
-      { time: "10:26", type: "highlight", title: "🏛️ Praça Dam", body: "O coração de Amsterdã. A praça fica em frente ao <strong>Palácio Real</strong> (ainda usado pela família real holandesa) e ao <strong>Nieuwe Kerk</strong>. Bom ponto de orientação para começar o dia.", tips: [{type:"food", text:"<strong>Café da manhã aqui:</strong> Manneken Pis (batatas fritas holandesas), padarias locais, ou o clássico stroopwafel de uma banca de rua."}] },
-      { time: "11:03", type: "highlight", title: "🍎 Winkel 43 — Apple Taart <span class='badge badge-must'>Imperdível</span>", body: "A torta de maçã mais famosa de Amsterdã. A fila vale cada minuto. Peça a torta com creme chantilly e um café.", tips: [{type:"food", text:"Torta de maçã: €5,70. Chegue cedo — a fila cresce ao longo do dia. Fica perto do mercado de Jordaan."}] },
-      { time: "11:50", type: "highlight", title: "📖 Casa de Anne Frank <span class='badge badge-paid'>Reserve online</span>", body: "Um dos museus mais comoventes do mundo. O esconderijo onde Anne Frank viveu de 1942 a 1944. A visita dura cerca de 1h15.", tips: [{type:"warn", text:"<strong>Reserve com meses de antecedência</strong> — ingressos esgotam rapidíssimo. Sem reserva, é impossível entrar."}] },
-      { time: "13:43", type: "highlight", title: "🍺 Heineken Experience <span class='badge badge-paid'>Pago</span>", body: "A fábrica original da Heineken, transformada em experiência imersiva. Aprenda a história da cerveja, veja os antigos tanques de fermentação e ganhe um copo de Heineken no final.", tips: [{type:"info", text:"~€23. Dura cerca de 1h30–2h. Inclui cruzeiro pelos canais!"}] },
-      { time: "16:00", type: "highlight", title: "⛵ Heineken Flagship Cruise", body: "Um cruzeiro de 1 hora pelos canais de Amsterdã — incluso com o ingresso da Heineken. O embarque é no <strong>Rijksmuseum</strong> (7 min a pé). Esteja lá 15 min antes.", tips: [{type:"warn", text:"O cruzeiro tem horários separados da experiência da cervejaria. Planeje o deslocamento até o Rijksmuseum com antecedência."}] },
-      { time: "17:12", type: "highlight", title: "🛍️ Albert Cuypstraat Markt", body: "O maior mercado a céu aberto dos Países Baixos. Perfeito para <strong>stroopwafels frescos</strong>, frutas, souvenirs autênticos e comida de rua típica. Muito mais barato que comprar em lojas turísticas.", tips: [{type:"food", text:"<strong>Compre aqui:</strong> Stroopwafel fresco (muito melhor que os embalados), haring (arenque marinado com cebola — prato típico holandês), patatje oorlog (batatas fritas com maionese, satay e cebola)."}] },
-      { time: "20:45", type: "highlight", title: "🌙 Red Light District", body: "O famoso bairro da luz vermelha de Amsterdã. À noite é uma experiência urbana fascinante — ruelas medievais com canais e a energia única da cidade. Respeite as regras: <strong>proibido fotografar as janelas</strong>.", tips: [{type:"warn", text:"É proibido tirar fotos das trabalhadoras nas janelas. Multa alta e pode ter confisco do celular."}] },
-    ],
-    food: {
-      title: "🧀 Onde comer em Amsterdã",
-      items: [
-        { name: "Manneken Pis — Batatas fritas holandesas", desc: "As fritas holandesas são famosas na Europa. Mais grossas que o habitual, servidas com maionese, satay ou outras molhos. Ícone da street food de Amsterdã.", price: "€5–9" },
-        { name: "Haring (arenque marinado)", desc: "O prato mais típico da Holanda. Peixe cru marinado servido com cebola picada e picles. Coma de cabeça para baixo como os holandeses fazem.", price: "€4–6" },
-        { name: "Stroopwafel fresco no mercado", desc: "Dois wafels crocantes com xarope de caramelo quente no meio. Sempre melhor fresco, quentinho, no mercado Albert Cuyp.", price: "€2–3" },
-        { name: "Patatje Oorlog (Batatas Fritas Guerra)", desc: "Batatas fritas cobertas com maionese, molho de amendoim (satay) e cebola picada. Estranho mas viciante.", price: "€5–7" },
-        { name: "Opcção rápida perto da Dam", desc: "McDonalds (Big Mac combo ~€10), Burger King (Whopper combo ~€13), KFC, ou Manneken Pis.", price: "€6–13" },
-      ]
-    }
-  },
+  {id:6,city:"Amsterdã",em:"🇳🇱",date:"Sáb, 2 mai 2026",t1:"Canais,",t2:"Cerveja & Cultura",ti:1,
+  intro:"Amsterdã é uma cidade de canais, casas inclinadas e bicicletas por toda parte. Casa de Anne Frank, Heineken Experience e um cruzeiro pelos canais icônicos.",
+  ev:[
+    {hl:1,time:"10:26",title:"🏛️ Praça Dam",body:"O coração de Amsterdã. Em frente ao <strong>Palácio Real</strong> e ao <strong>Nieuwe Kerk</strong>.",tips:[{t:"food",i:"🍽️",x:"Stroopwafel de uma banca de rua — um bom começo de manhã."}]},
+    {hl:1,time:"11:03",title:"🍎 Winkel 43 — Apple Taart",bgs:["must"],body:"A torta de maçã mais famosa de Amsterdã. A fila vale cada minuto.",tips:[{t:"food",i:"🍽️",x:"Torta de maçã: €5,70. Chegue cedo — a fila cresce ao longo do dia."}]},
+    {hl:1,time:"11:50",title:"📖 Casa de Anne Frank",bgs:["paid"],body:"Um dos museus mais comoventes do mundo. O esconderijo onde Anne Frank viveu de 1942 a 1944.",tips:[{t:"warn",i:"⚠️",x:"<strong>Reserve com meses de antecedência</strong> — ingressos esgotam rapidamente. Sem reserva é impossível entrar."}]},
+    {hl:1,time:"13:43",title:"🍺 Heineken Experience",bgs:["paid"],body:"A fábrica original da Heineken, transformada em experiência imersiva. Inclui cruzeiro pelos canais!",tips:[{t:"info",i:"ℹ️",x:"~€23. Duração: 1h30–2h."}]},
+    {hl:1,time:"16:00",title:"⛵ Heineken Flagship Cruise",body:"1 hora pelos canais — incluso com a Heineken. Embarque no <strong>Rijksmuseum</strong> (7 min a pé). Chegue 15 min antes.",tips:[{t:"warn",i:"⚠️",x:"Horários separados da cervejaria. Planeje o deslocamento."}]},
+    {hl:1,time:"17:12",title:"🛍️ Albert Cuypstraat Markt",bgs:["must"],body:"O maior mercado a céu aberto dos Países Baixos. Stroopwafels frescos, haring e souvenirs autênticos.",tips:[{t:"food",i:"🍽️",x:"<strong>Compre aqui:</strong> Stroopwafel quentinho, haring com cebola e patatje oorlog."}]},
+    {hl:1,time:"20:45",title:"🌙 Red Light District",body:"O famoso bairro à noite — ruelas medievais com canais e atmosfera única.",tips:[{t:"warn",i:"⚠️",x:"Proibido fotografar as trabalhadoras nas janelas. Multa alta e possível confisco do celular."}]},
+  ],
+  food:[
+    {n:"Manneken Pis — Batatas fritas",d:"Fritas holandesas com maionese, satay ou outros molhos. Ícone da street food.",p:"€5–9"},
+    {n:"Haring (arenque marinado)",d:"O prato mais típico da Holanda. Peixe cru com cebola picada. Coma de cabeça para baixo!",p:"€4–6"},
+    {n:"Stroopwafel fresco no mercado",d:"Dois wafels crocantes com xarope de caramelo quente. Sempre melhor fresco e quentinho.",p:"€2–3"},
+    {n:"Patatje Oorlog ('Batatas Guerra')",d:"Batatas fritas com maionese + molho de amendoim + cebola. Estranho mas viciante.",p:"€5–7"},
+  ]},
 
-  {
-    id: 7,
-    label: "Dia 7",
-    city: "Londres",
-    title: "Chegada em Londres",
-    date: "Domingo, 3 de maio de 2026",
-    emoji: "🇬🇧",
-    intro: "Vocês chegam em Londres de Eurostar — o trem que passa sob o Canal da Mancha! A chegada é ao meio-dia e haverá bastante tempo para ver os principais pontos turísticos. Londres é cara mas tem muitas atrações gratuitas.",
-    events: [
-      { time: "08:17", type: "highlight", title: "🚄 Eurostar — Amsterdã → Londres", body: "O trem que atravessa o fundo do Mar do Norte! Saída de Amsterdam Centraal. Chegada em London St Pancras às 11:57.", tips: [{type:"info", text:"O Eurostar é uma experiência em si. Aproveite o percurso e a chegada pela estação St Pancras — uma das mais belas estações vitoriais do mundo."}] },
-      { time: "12:15", type: "highlight", title: "⚡ Plataforma 9¾ — King's Cross", body: "A plataforma de Harry Potter! Na estação King's Cross tem uma instalação oficial com metade de um carrinho de compras 'atravessando' a parede, cachecóis das casas de Hogwarts e loja oficial. A fila para a foto anda rápido.", tips: [{type:"warn", text:"A loja Harry Potter na King's Cross vende produtos exclusivos. Bom lugar para souvenirs do universo HP."}] },
-      { time: "13:44", type: "highlight", title: "🦁 Trafalgar Square — Almoço aqui", body: "A praça mais famosa de Londres, com os leões de bronze e a Coluna de Nelson (52m). Ao redor ficam a National Gallery (museu gratuito e incrível) e a National Portrait Gallery.", tips: [{type:"food", text:"<strong>Almoço por aqui:</strong> Pubs ao redor servem fish & chips, bangers & mash. Preços em torno de £10–15. Para economia, vá a um Pret A Manger ou Greggs (padaria inglesa) — saboroso e barato."}] },
-      { time: "14:45", type: "highlight", title: "👑 Buckingham Palace", body: "A residência oficial da família real britânica. A troca da guarda acontece às 11h (não terão tempo hoje), mas a fachada e os portões são impressionantes. Guarde para amanhã a troca da guarda." },
-      { time: "15:30", type: "highlight", title: "⛪ Westminster Abbey <span class='badge badge-paid'>Entrada paga</span>", body: "A abadia onde reis e rainhas são coroados e enterrados. Arquitetura gótica do século XIII. Túmulos de Newton, Darwin, Chaucer e Dickens." },
-      { time: "15:45", type: "highlight", title: "🕰️ Big Ben (Torre Elizabeth)", body: "O relógio mais famoso do mundo. Para a foto clássica, fique na rua <strong>Great George St</strong> — ali você enquadra o Big Ben junto a uma cabine telefônica vermelha.", tips: [{type:"info", text:"O nome correto é Torre Elizabeth. 'Big Ben' é tecnicamente só o sino dentro da torre."}] },
-      { time: "16:08", type: "highlight", title: "🐎 Whitehall — Guarda Real", body: "Fotografe os guardas reais a cavalo. Eles não interagem, mas podem gritar e o cavalo pode morder — mantenha distância." },
-      { time: "16:53", type: "highlight", title: "⛪ St. Paul's Cathedral", body: "A catedral do arquiteto Christopher Wren, construída após o Grande Incêndio de Londres (1666). Após as fotos, vão ao shopping <strong>One New Change</strong> ao lado para o elevador panorâmico com vista gratuita para a catedral de um ângulo único." },
-      { time: "17:36", type: "highlight", title: "🌿 Sky Garden <span class='badge badge-free'>Reserve grátis</span>", body: "Um jardim suspenso no 35º andar do prédio 'Walkie Talkie' com vista panorâmica de 360° de Londres. Reserve o horário das 17:30 ou 18h no site.", tips: [{type:"warn", text:"Reserve antecipadamente no site skygarden.london — é gratuito mas esgota rápido."}] },
-      { time: "18:00", type: "highlight", title: "🏛️ Leadenhall Market", body: "Um mercado vitoriano coberto de 1881 — sim, foi aqui que filmaram o Beco Diagonal de Harry Potter. Os arcos coloridos e o piso xadrez são instantaneamente reconhecíveis." },
-      { time: "18:48", type: "highlight", title: "📚 Cecil Court — Beco Diagonal", body: "A inspiração real para o Beco Diagonal de Harry Potter. Uma ruinha medieval com livrarias antigas, antiquários e lojas de raridades. O lugar mais charmoso de Londres." },
-      { time: "19:00", type: "highlight", title: "🎭 Leicester Square / Chinatown / Piccadilly Circus", body: "O triângulo mais animado de Londres. De Leicester Square (cinema), passe pela Chinatown (melhor dim sum da cidade), depois Piccadilly Circus com suas luzes de néon.", tips: [{type:"food", text:"<strong>Jantar na Chinatown:</strong> Dim Sum, pato laqueado ou noodles em restaurantes animados e baratos. Fila do lado de fora = sinal de qualidade."}] },
-      { time: "19:43", type: "highlight", title: "🛍️ Carnaby Street", body: "A rua mais fashion de Londres desde os anos 60. Boutiques, cafés e arquitetura vitoriana com decoração contemporânea." },
-    ],
-    food: {
-      title: "🍟 Onde comer em Londres",
-      items: [
-        { name: "Greggs (padaria inglesa)", desc: "Sausage roll (pastelão de salsicha), steak bake ou qualquer salgado quente. A rede mais amada do povo inglês. Presente em toda a cidade.", price: "£1,50–3" },
-        { name: "Pret A Manger", desc: "Sanduíches, sopas e saladas frescas. Qualidade acima da média para fast-food. Bom para almoços rápidos em movimento.", price: "£5–9" },
-        { name: "Fish & Chips", desc: "O prato nacional britânico. Peixe (geralmente bacalhau ou linguado) empanado e frito com batatas grossas. Com vinagre de malte e sal — como os ingleses fazem.", price: "£10–15 em pub" },
-        { name: "Chinatown — Dim Sum", desc: "Dim sum de arroz, camarão ou carne no vapor. Melhor custo-benefício gastronômico de Londres. Fila rápida nas barracas da rua.", price: "£6–12" },
-        { name: "Nando's", desc: "A rede de frango grelhado afro-portuguesa, amada pelos ingleses. Frango com molho peri-peri em diferentes níveis de picância.", price: "£12–15" },
-      ]
-    }
-  },
+  {id:7,city:"Londres",em:"🇬🇧",date:"Dom, 3 mai 2026",t1:"Chegada",t2:"em Londres",ti:0,
+  intro:"Vocês chegam de Eurostar — o trem que passa sob o Canal da Mancha! Chegada ao meio-dia com bastante tempo para os principais pontos. Londres tem muitas atrações gratuitas e incríveis.",
+  ev:[
+    {hl:1,time:"08:17",title:"🚄 Eurostar — Amsterdã → Londres",body:"O trem que atravessa o fundo do Mar do Norte! Chegada em London St Pancras às 11:57.",tips:[{t:"info",i:"ℹ️",x:"St Pancras é uma das mais belas estações vitorianas do mundo — aproveitem a chegada."}]},
+    {hl:1,time:"12:15",title:"⚡ Plataforma 9¾ — King's Cross",body:"A plataforma de Harry Potter! Carrinho 'atravessando' a parede, cachecóis das casas de Hogwarts e loja exclusiva.",tips:[{t:"info",i:"ℹ️",x:"A loja vende produtos exclusivos — ótimo para souvenirs do universo HP."}]},
+    {hl:1,time:"13:44",title:"🦁 Trafalgar Square — Almoço",body:"A praça mais famosa de Londres. Leões de bronze e a Coluna de Nelson. <strong>National Gallery</strong> ao lado é gratuita.",tips:[{t:"food",i:"🍽️",x:"Pub ao redor para fish & chips. Ou Greggs/Pret A Manger para economizar."}]},
+    {hl:1,time:"14:45",title:"👑 Buckingham Palace",body:"A residência oficial da família real britânica. Fachada e portões são impressionantes."},
+    {hl:1,time:"15:30",title:"⛪ Westminster Abbey",bgs:["paid"],body:"A abadia onde reis são coroados e enterrados. Túmulos de Newton, Darwin, Chaucer e Dickens."},
+    {hl:1,time:"15:45",title:"🕰️ Big Ben (Torre Elizabeth)",body:"Para a foto clássica: fique na rua <strong>Great George St</strong> para enquadrar a torre com a cabine telefônica vermelha.",tips:[{t:"info",i:"ℹ️",x:"'Big Ben' é tecnicamente só o sino dentro da Torre Elizabeth."}]},
+    {hl:1,time:"16:08",title:"🐎 Whitehall — Guarda Real",body:"Foto com os guardas a cavalo. Mantenham distância — o cavalo pode morder."},
+    {hl:1,time:"16:53",title:"⛪ St. Paul's Cathedral",body:"A catedral de Christopher Wren. Depois, vão ao <strong>One New Change</strong> para o elevador panorâmico gratuito com vista incrível."},
+    {hl:1,time:"17:36",title:"🌿 Sky Garden",bgs:["free"],body:"Jardim suspenso no 35º andar com vista 360° de Londres.",tips:[{t:"warn",i:"⚠️",x:"Reserve em skygarden.london — gratuito mas esgota rápido."}]},
+    {hl:1,time:"18:00",title:"🏛️ Leadenhall Market",body:"Mercado vitoriano coberto de 1881 — filmagens do <strong>Beco Diagonal</strong> de Harry Potter. Arcos coloridos e piso xadrez."},
+    {hl:1,time:"18:48",title:"📚 Cecil Court — Beco Diagonal",body:"A inspiração real para o Beco Diagonal: ruelas medievais com livrarias antigas e antiquários."},
+    {hl:1,time:"19:00",title:"🎭 Leicester Sq / Chinatown / Piccadilly",body:"O triângulo mais animado de Londres.",tips:[{t:"food",i:"🍽️",x:"<strong>Jantar na Chinatown:</strong> Dim sum, pato laqueado ou noodles. Fila do lado de fora = qualidade."}]},
+    {hl:1,time:"19:43",title:"🛍️ Carnaby Street",body:"A rua mais fashion de Londres desde os anos 60."},
+  ],
+  food:[
+    {n:"Greggs — Sausage Roll",d:"O pastelão de salsicha mais amado da Inglaterra. Quente, crocante, barato.",p:"£1,50–3"},
+    {n:"Fish & Chips num pub",d:"Peixe empanado e frito com batatas grossas, vinagre de malte e sal.",p:"£10–15"},
+    {n:"Pret A Manger",d:"Sanduíches, sopas e saladas frescas. Qualidade acima da média para o preço.",p:"£5–9"},
+    {n:"Chinatown — Dim Sum",d:"Melhor custo-benefício gastronômico de Londres.",p:"£6–12"},
+    {n:"Nando's",d:"Frango grelhado peri-peri com níveis de picância. Amado pelos ingleses.",p:"£12–15"},
+  ]},
 
-  {
-    id: 8,
-    label: "Dia 8",
-    city: "Londres",
-    title: "Oxford Street, London Eye e Wembley",
-    date: "Segunda-feira, 4 de maio de 2026",
-    emoji: "🎡",
-    intro: "Dia de compras, roda-gigante e o estádio mais famoso do futebol mundial. London Pass cobre as principais atrações.",
-    events: [
-      { time: "10:00", type: "highlight", title: "🛍️ Oxford Street — Compras", body: "A rua de compras mais famosa do mundo. Destaques: <strong>Primark</strong> (roupas baratíssimas, multiandar), <strong>TK Maxx</strong> (marcas com desconto), <strong>Selfridges</strong> (luxo e gastronomia), <strong>UNIQLO</strong> (básicos de qualidade), <strong>H&M</strong>.", tips: [{type:"warn", text:"O Primark da Oxford Street é enorme e tem filas nos provadores. Vá cedo."}] },
-      { time: "12:14", type: "highlight", title: "🐟 The Seashell of Lisson Grove — Almoço", body: "Considerado um dos melhores fish & chips de Londres. Presente no London Pass — basta apresentar.", tips: [{type:"warn", text:"Funciona das 12h às 17:30. Não chegue depois das 17h. Pode haver fila — vale a espera."}] },
-      { time: "14:00", type: "highlight", title: "🎡 London Eye <span class='badge badge-paid'>Reserve pelo London Pass</span>", body: "A roda-gigante de 135m às margens do Tâmisa. Cada cápsula é fechada e tem vista panorâmica de 360° de Londres. A volta dura ~30 minutos.", tips: [{type:"warn", text:"Reserve com até 15 dias de antecedência pelo GO City App. Precisa do número do pedido e e-mail do passe."}] },
-      { time: "15:32", type: "highlight", title: "🏟️ Wembley Stadium Tour", body: "O estádio mais famoso do futebol inglês — onde a Inglaterra ganhou a Copa do Mundo de 1966 e onde os melhores shows do mundo são realizados. Tour com 1h30 de duração.", tips: [{type:"info", text:"London Pass inclui o tour — só mostrar o passe, sem reserva necessária. Chegue para o horário das 16h."}] },
-    ],
-    food: {
-      title: "🍽️ Comer por Londres hoje",
-      items: [
-        { name: "The Seashell of Lisson Grove", desc: "Incluso no passe. Um dos melhores fish & chips de Londres — mushy peas (ervilhas amassadas) são a acompanhamento clássico.", price: "Incluso no passe" },
-        { name: "Greggs ou Pret A Manger", desc: "Para lanches rápidos durante as compras ou entre as atrações.", price: "£3–8" },
-        { name: "Pub tradicional no caminho", desc: "Jantar em um pub inglês depois do Wembley. Peça shepherd's pie (torta de carne com purê de batata) ou Sunday roast (assado dominical com tudo).", price: "£12–18" },
-      ]
-    }
-  },
+  {id:8,city:"Londres",em:"🎡",date:"Seg, 4 mai 2026",t1:"Oxford Street,",t2:"Eye & Wembley",ti:0,
+  intro:"Dia de compras na rua mais famosa do mundo, roda-gigante às margens do Tâmisa e o estádio mais icônico do futebol inglês.",
+  ev:[
+    {hl:1,time:"10:00",title:"🛍️ Oxford Street — Compras",body:"A rua de compras mais famosa do mundo. <strong>Primark</strong> (multiandar), <strong>TK Maxx</strong>, <strong>Selfridges</strong>, <strong>UNIQLO</strong>, <strong>H&M</strong>.",tips:[{t:"warn",i:"⚠️",x:"O Primark da Oxford Street é enorme. Vá cedo para evitar filas."}]},
+    {hl:1,time:"12:14",title:"🐟 The Seashell of Lisson Grove",bgs:["must"],body:"Um dos melhores fish & chips de Londres. Incluso no London Pass — só apresentar.",tips:[{t:"warn",i:"⚠️",x:"Funciona das 12h às 17:30."}]},
+    {hl:1,time:"14:00",title:"🎡 London Eye",bgs:["paid"],body:"A roda-gigante de 135m com vista panorâmica 360° de Londres. A volta dura ~30 min.",tips:[{t:"warn",i:"⚠️",x:"Reserve pelo GO City App com até 15 dias de antecedência."}]},
+    {hl:1,time:"15:32",title:"🏟️ Wembley Stadium Tour",bgs:["paid"],body:"O estádio mais famoso do futebol inglês — Copa do Mundo 1966.",tips:[{t:"info",i:"ℹ️",x:"London Pass inclui o tour — só mostrar o passe. Horário das 16h."}]},
+  ],
+  food:[
+    {n:"The Seashell of Lisson Grove",d:"Incluso no passe. Um dos melhores fish & chips de Londres, com mushy peas.",p:"Incluso no passe"},
+    {n:"Pub após o Wembley",d:"Shepherd's pie ou Sunday roast — o jantar britânico clássico.",p:"£12–18"},
+  ]},
 
-  {
-    id: 9,
-    label: "Dia 9",
-    city: "Londres",
-    title: "Thames Cruise, Torres e Arsenal",
-    date: "Terça-feira, 5 de maio de 2026",
-    emoji: "⚽",
-    intro: "Dia de cruzeiro pelo Tâmisa, Tower Bridge, estádio do Tottenham com F1 e a grande final: assistir ao Arsenal em casa (ou em um pub perto do estádio)!",
-    events: [
-      { time: "10:30", type: "highlight", title: "🍳 Bill's Soho — Café da manhã", body: "Incluso no London Pass. Café da manhã até as 11h — apareça, mostre o passe e será sentado.", tips: [{type:"warn", text:"Cheguem até as 10:45 para garantir o café da manhã dentro do horário de encerramento às 11h."}] },
-      { time: "12:00", type: "highlight", title: "⛵ London Thames Cruise — 24h", body: "Cruzeiro panorâmico pelo rio Tâmisa. Apresente o passe para receber um passe do cruzeiro de 24 horas — pode usar amanhã também! Veja as pontes, o Parlamento, St. Paul's e mais, todos do rio." },
-      { time: "12:40", type: "highlight", title: "🏰 Tower Bridge e Torre de Londres", body: "Vista externa da Tower Bridge — uma das mais fotografadas do mundo — e a Torre de Londres, fortaleza medieval que foi prisão real e ainda guarda as joias da coroa.", tips: [{type:"info", text:"Vocês não vão entrar hoje — apenas admirar de fora e do barco. O London Pass cobre a entrada caso queiram entrar em outro momento."}] },
-      { time: "14:25", type: "highlight", title: "🏟️ Tottenham Hotspur Stadium", body: "Estádio de última geração do Tottenham — tem até pista de F1 indoor! O <strong>F1 Experience</strong> (corrida de kart de 15 min) e o <strong>Dare Skywalk</strong> (caminhada no topo do estádio) são cobertos pelo London Pass.", tips: [{type:"info", text:"Nenhum dos dois precisa de reserva — apenas apresente o passe."}] },
-      { time: "16:45", type: "highlight", title: "⚽ Arsenal Stadium — Emirates", body: "Chegada no estádio do Arsenal para o jogo contra o Atlético de Madrid (Champions League) às 20h. Passem ao redor do estádio, absorvam a atmosfera e encontrem um pub local para assistir ao jogo.", tips: [{type:"info", text:"Pubs ao redor do Emirates enlouquecem antes do jogo. Chegue cedo para garantir um lugar e já pedir algo para comer antes do apito inicial."}] },
-    ],
-    food: {
-      title: "⚽ Comer no dia do jogo",
-      items: [
-        { name: "Bill's Soho", desc: "Café da manhã inglês completo: ovos mexidos, bacon, salsichas, feijão cozido (baked beans), torradas. Incluso no passe.", price: "Incluso" },
-        { name: "Pub ao redor do Emirates Stadium", desc: "Jogue sua sorte em um pub local. Peça burger & chips ou pie & mash enquanto assiste ao aquecimento no telão.", price: "£12–18" },
-        { name: "Pratos típicos de pub inglês", desc: "Steak & Ale Pie (torta de carne com cerveja), Bangers & Mash (salsichas com purê), Fish & Chips ou o famoso Full English Breakfast.", price: "£10–18" },
-      ]
-    }
-  },
+  {id:9,city:"Londres",em:"⚽",date:"Ter, 5 mai 2026",t1:"Thames Cruise,",t2:"Torres & Arsenal",ti:0,
+  intro:"Cruzeiro pelo Tâmisa, Tower Bridge, estádio do Tottenham com F1 e a grande final: Arsenal em casa na Champions League!",
+  ev:[
+    {hl:1,time:"10:30",title:"🍳 Bill's Soho — Café da manhã",body:"Incluso no London Pass. Café da manhã até as 11h.",tips:[{t:"warn",i:"⚠️",x:"Cheguem até as 10:45 para garantir o café dentro do horário."}]},
+    {hl:1,time:"12:00",title:"⛵ Thames Cruise 24h",body:"Cruzeiro panorâmico pelo Tâmisa. Apresente o passe para um passe de 24h — pode usar amanhã também!"},
+    {hl:1,time:"12:40",title:"🏰 Tower Bridge e Torre de Londres",body:"Vista externa da Tower Bridge e da fortaleza medieval.",tips:[{t:"info",i:"ℹ️",x:"London Pass cobre a entrada se quiserem visitar internamente."}]},
+    {hl:1,time:"14:25",title:"🏟️ Tottenham Hotspur Stadium",bgs:["paid"],body:"Estádio de última geração com pista de F1 indoor! <strong>F1 Experience</strong> (kart 15 min) e <strong>Dare Skywalk</strong> cobertos pelo London Pass.",tips:[{t:"info",i:"ℹ️",x:"Não precisa de reserva — só apresentar o passe."}]},
+    {hl:1,time:"16:45",title:"⚽ Emirates — Arsenal vs Atlético",body:"Jogo da Champions às 20h. Passem ao redor do estádio e escolham um pub para assistir.",tips:[{t:"food",i:"🍽️",x:"Pubs ao redor do Emirates enlouquecem antes do jogo. Chegue cedo."}]},
+  ],
+  food:[
+    {n:"Bill's Soho",d:"Café da manhã inglês completo: ovos, bacon, salsichas, baked beans. Incluso no passe.",p:"Incluso"},
+    {n:"Pub ao redor do Emirates",d:"Burger & chips ou pie & mash com o aquecimento no telão.",p:"£12–18"},
+  ]},
 
-  {
-    id: 10,
-    label: "Dia 10",
-    city: "Paris",
-    title: "Cidade da Luz — Chegada",
-    date: "Quarta-feira, 6 de maio de 2026",
-    emoji: "🇫🇷",
-    intro: "Bonjour Paris! Vocês chegam de Eurostar na capital mais elegante do mundo. Hoje: Ópera Garnier, Torre Eiffel, Arco do Triunfo, Champs-Élysées, Place de La Concorde e o Louvre.",
-    events: [
-      { time: "07:01", type: "highlight", title: "🚄 Eurostar Londres → Paris", body: "Saída de St Pancras às 7:01, chegada em Paris Gare du Nord às 10:29.", tips: [{type:"info", text:"Aproveitem o trajeto para relaxar — é a última vez em território britânico!"}] },
-      { time: "10:46", type: "highlight", title: "🏨 Hotel Altona — Deixem as malas", body: "Deixem as bagagens e saiam logo para aproveitar o dia. Check-in depois." },
-      { time: "11:13", type: "highlight", title: "🎭 Ópera Garnier", body: "Uma das óperas mais luxuosas do mundo e cenário do lendário 'Fantasma da Ópera'. O exterior é uma obra de arte neoclássica do século XIX.", tips: [{type:"info", text:"A entrada para visitar o interior custa ~€14. O exterior já é impressionante para fotos."}] },
-      { time: "12:10", type: "highlight", title: "🗼 Torre Eiffel <span class='badge badge-must'>Ícone</span>", body: "A dama de ferro! Explore a área ao redor: <strong>Rue de l'Université</strong> (a clássica foto com a torre), <strong>Champ-de-Mars</strong> (piquenique?) e <strong>Pont d'Iéna</strong> (foto da torre do outro lado do Sena). Se quiserem a vista do vagão de metrô, vão até a estação Bir-Hakeim.", tips: [{type:"warn", text:"Cuidado com vendedores ambulantes ao redor da torre — são insistentes e os produtos são iguais em qualquer loja de souvenir."}] },
-      { time: "13:02", type: "highlight", title: "🏛️ Trocadéro", body: "Do outro lado do Sena, o Trocadéro oferece a vista mais icônica e frontal da Torre Eiffel. Sempre lotado, mas vale o esforço." },
-      { time: "13:30", type: "highlight", title: "🏆 Arco do Triunfo", body: "Mandado construir por Napoleão em 1806 para celebrar suas vitórias. No centro de uma rotatória com 12 avenidas, incluindo a Champs-Élysées. A subida ao topo (paga, gratuita para menores de 18 anos da UE) oferece vista incrível.", tips: [{type:"warn", text:"NUNCA atravesse a rotatória do Arco do Triunfo a pé — é ilegal e perigoso. Use o túnel de pedestres subterrâneo para chegar."}] },
-      { time: "13:40", type: "highlight", title: "🌳 Champs-Élysées — Almoço", body: "A avenida mais famosa do mundo. Lojas de luxo, cinemas e restaurantes no primeiro quilômetro. Depois, parques e os Grands Palais. Almoce aqui — há McDonalds e Burger King nas ruelas laterais.", tips: [{type:"food", text:"<strong>Almoço rápido:</strong> McDonalds nas ruelas ao lado da Champs-Élysées (virar em uma rua perpendicular). Para algo mais típico, procure uma boulangerie e peça um croque-monsieur ou sandwich jambon-beurre (presunto com manteiga em baguete)."}] },
-      { time: "15:07", type: "highlight", title: "🌊 Place de La Concorde", body: "A maior praça de Paris — e onde o rei Luís XVI foi guilhotinado em 1793. O obelisco no centro tem 3.300 anos, vindo diretamente do Egito." },
-      { time: "15:22", type: "highlight", title: "🌸 Jardins des Tuileries", body: "Um dos jardins mais bonitos da Europa, com 1km de extensão até o Louvre. Em maio, na primavera, as flores estão em pleno bloom. Perfeito para uma caminhada preguiçosa." },
-      { time: "16:05", type: "highlight", title: "👑 Palais Royal", body: "Um jardim e galeria de colunas listradas no coração de Paris — as famosas colunas de Buren (1986). Ambiente calmo e elegante, frequentado por parisienses." },
-      { time: "16:45", type: "highlight", title: "🖼️ Louvre <span class='badge badge-paid'>Pago</span>", body: "O maior museu do mundo. Ao entrar, evite a Pirâmide (entrada mais cheia) — use a <strong>Porte des Lions</strong> ou <strong>Carrousel du Louvre</strong>. Com o tempo disponível, veja a <strong>Mona Lisa</strong>, a <strong>Vênus de Milo</strong> e a <strong>Vitória de Samotrácia</strong>.", tips: [{type:"warn", text:"O Louvre é enorme — NUNCA tentem ver tudo. Definam 5–6 obras prioritárias e guiem-se para elas com o app."}] },
-    ],
-    food: {
-      title: "🥐 Comer em Paris (Dia 1)",
-      items: [
-        { name: "Sandwich Jambon-Beurre (baguete com presunto e manteiga)", desc: "O lanche mais consumido da França. Simples, barato e delicioso. Em qualquer boulangerie.", price: "€4–6" },
-        { name: "Croque-Monsieur", desc: "Sanduíche grelhado de presunto e queijo (gruyère), gratinado com bechamel. Clássico dos cafés parisienses.", price: "€6–9" },
-        { name: "Crepe de rua", desc: "Crepes doces (Nutella, manteiga + açúcar) ou salgados (jambon-fromage). Vendedores ambulantes por todo o centro.", price: "€3–7" },
-        { name: "Boulangerie para o café da manhã", desc: "Croissant de manteiga, pain au chocolat ou pain aux raisins quentinho. A melhor forma de começar o dia em Paris.", price: "€1,50–3" },
-        { name: "McDonalds / Burger King na Champs-Élysées", desc: "Para almoço rápido sem gastar muito. O McDonalds da Champs-Élysées serve macarons da Ladurée no menu — bizarro e divertido.", price: "€8–12" },
-      ]
-    }
-  },
+  {id:10,city:"Paris",em:"🇫🇷",date:"Qua, 6 mai 2026",t1:"Cidade",t2:"da Luz",ti:0,
+  intro:"Bonjour Paris! Chegam de Eurostar na capital mais elegante do mundo. Hoje: Ópera Garnier, Torre Eiffel, Arco do Triunfo, Champs-Élysées e o Louvre.",
+  ev:[
+    {hl:1,time:"07:01",title:"🚄 Eurostar Londres → Paris",body:"Saída de St Pancras, chegada em Gare du Nord às 10:29."},
+    {hl:1,time:"10:46",title:"🏨 Hotel Altona — Malas",body:"Deixem as bagagens e saiam logo."},
+    {hl:1,time:"11:13",title:"🎭 Ópera Garnier",body:"Uma das óperas mais luxuosas do mundo. Cenário do 'Fantasma da Ópera'. Exterior neoclássico magnífico.",tips:[{t:"info",i:"ℹ️",x:"Visitar o interior custa ~€14. O exterior já justifica a parada."}]},
+    {hl:1,time:"12:10",title:"🗼 Torre Eiffel",bgs:["must"],body:"A Dama de Ferro! Foto na <strong>Rue de l'Université</strong>, no <strong>Champ-de-Mars</strong> e do outro lado do Sena. Vista do metrô na estação <strong>Bir-Hakeim</strong>.",tips:[{t:"warn",i:"⚠️",x:"Cuidado com vendedores ambulantes ao redor da torre — insistentes."}]},
+    {hl:1,time:"13:02",title:"🏛️ Trocadéro",body:"A vista mais frontal e icônica da Torre Eiffel, do outro lado do Sena."},
+    {hl:1,time:"13:30",title:"🏆 Arco do Triunfo",body:"Mandado construir por Napoleão em 1806. Subida paga ao topo.",tips:[{t:"warn",i:"⚠️",x:"NUNCA atravesse a rotatória a pé — use o túnel de pedestres subterrâneo."}]},
+    {hl:1,time:"13:40",title:"🌳 Champs-Élysées — Almoço",body:"A avenida mais famosa do mundo. McDonalds e Burger King nas ruelas laterais.",tips:[{t:"food",i:"🍽️",x:"<strong>Mais típico:</strong> Qualquer boulangerie para um jambon-beurre (baguete + presunto + manteiga) ou croque-monsieur."}]},
+    {hl:1,time:"15:07",title:"🌊 Place de La Concorde",body:"A maior praça de Paris — onde Luís XVI foi guilhotinado em 1793. O obelisco tem 3.300 anos."},
+    {hl:1,time:"15:22",title:"🌸 Jardins des Tuileries",body:"1km de jardins até o Louvre. Em maio, flores em pleno bloom. Caminhada preguiçosa."},
+    {hl:1,time:"16:05",title:"👑 Palais Royal",body:"Galeria de colunas listradas (colunas de Buren). Ambiente calmo e elegante frequentado por parisienses."},
+    {hl:1,time:"16:45",title:"🖼️ Louvre",bgs:["paid"],body:"O maior museu do mundo. Evite a Pirâmide — use <strong>Porte des Lions</strong> ou <strong>Carrousel du Louvre</strong>.",tips:[{t:"warn",i:"⚠️",x:"Nunca tente ver tudo. Defina 5–6 obras: Mona Lisa, Vênus de Milo, Vitória de Samotrácia."}]},
+  ],
+  food:[
+    {n:"Jambon-Beurre (baguete presunto + manteiga)",d:"O lanche mais consumido da França. Em qualquer boulangerie.",p:"€4–6"},
+    {n:"Croque-Monsieur",d:"Sanduíche grelhado de presunto e gruyère gratinado. Clássico parisiense.",p:"€6–9"},
+    {n:"Crepe de rua",d:"Doces (Nutella) ou salgados (jambon-fromage). Por toda a cidade.",p:"€3–7"},
+    {n:"Croissant de manteiga",d:"Da boulangerie mais próxima. A melhor forma de começar o dia em Paris.",p:"€1,50–3"},
+  ]},
 
-  {
-    id: 11,
-    label: "Dia 11",
-    city: "Paris",
-    title: "Paris C'est Magique",
-    date: "Quinta-feira, 7 de maio de 2026",
-    emoji: "✨",
-    intro: "Notre-Dame, Versalhes e um cruzeiro noturno no Sena. O dia mais romântico e histórico da viagem.",
-    events: [
-      { time: "09:45", type: "highlight", title: "⛪ Basílica do Sacré-Cœur — Montmartre", body: "No ponto mais alto de Paris, com vista panorâmica da cidade. O bairro de Montmartre ao redor é um dos mais charmosos de Paris — ruas de paralelepípedo, artistas de rua, cafés. Na subida, passe pela <strong>Rue de Steinkerque</strong> para souvenirs.", tips: [{type:"info", text:"O funicular sobe do pé da colina até a basílica (~€2). Ou suba andando — não é cansativo e vale o passeio pelo bairro."}] },
-      { time: "10:06", type: "highlight", title: "🌸 La Maison Rose", body: "A casinha rosa mais fotografada de Paris. Uma viela pitoresca com trepadeiras na parede — cenário de postal." },
-      { time: "10:20", type: "highlight", title: "❤️ Muro do Eu Te Amo", body: "Um mural com 'Eu te amo' em 250 idiomas, em uma pracinha escondida em Montmartre. Romântico e universal." },
-      { time: "10:57", type: "highlight", title: "🏛️ Hôtel de Ville — Prefeitura de Paris", body: "O imponente prédio neogótico da prefeitura. Da frente, vá pela margem do Sena até a Ponte Pont au Change para a foto das torres da Conciergerie (antiga prisão real)." },
-      { time: "11:13", type: "highlight", title: "🪟 Sainte-Chapelle <span class='badge badge-paid'>~€13</span>", body: "Uma das obras primas do gótico francês, construída em 1248 por Luís IX. Os 15 vitrais representam 1.113 cenas bíblicas — quando a luz atravessa, a experiência é transcendental.", tips: [{type:"must", text:"Uma das mais belas experiências visuais de Paris. Não pule esta atração."}] },
-      { time: "12:00", type: "highlight", title: "⛪ Catedral de Notre-Dame <span class='badge badge-free'>Gratuito</span>", body: "A catedral reabriu ao público em dezembro de 2024 após o incêndio de 2019. Esta é uma oportunidade histórica — ver a Notre-Dame reconstruída e renovada. Tente subir nas torres.", tips: [{type:"warn", text:"Verifique o horário de funcionamento e se as torres estão abertas. A demanda é altíssima após a reabertura."}] },
-      { time: "13:15", type: "highlight", title: "🏛️ Panthéon", body: "O mausoléu da República Francesa. Voltaire, Rousseau, Victor Hugo, Marie Curie e Simone Veil estão enterrados aqui. A arquitetura neoclássica impressiona." },
-      { time: "13:36", type: "highlight", title: "☕ Saint-Germain-des-Prés — Almoço", body: "O bairro mais intelectual e cafeinado de Paris. Frequentado por Sartre, Simone de Beauvoir e Hemingway. Perfeito para chocolate quente, crème brûlée em uma pâtisserie ou almoço em um bistrô.", tips: [{type:"food", text:"<strong>Imperdível:</strong> Chocolate quente no <strong>Les Deux Magots</strong> ou <strong>Café de Flore</strong> — cafés históricos do séc. XIX. O chocolate quente é espesso e servido com uma jarra de leite quente. ~€8. Também procure uma pâtisserie para crème brûlée fresco."}] },
-      { time: "15:36", type: "highlight", title: "👑 Palácio de Versalhes <span class='badge badge-paid'>Pago</span>", body: "O palácio que inspirou toda a arquitetura real europeia. A Galeria dos Espelhos (versão final, com 357 espelhos) é de cair o queixo. Os jardins de Le Nôtre se estendem por quilômetros.", tips: [{type:"warn", text:"Reserve o ingresso antecipadamente. Os jardins são imensos — foco no palácio, Galeria dos Espelhos, e Trianon se der tempo."}, {type:"info", text:"Em maio, os jardins têm as <strong>Grandes Eaux Musicales</strong> nos fins de semana — fontes coreografadas com música clássica. Se cair em sábado, é espetacular."}] },
-      { time: "20:00", type: "highlight", title: "🚢 Bateaux-Mouches — Cruzeiro no Sena <span class='badge badge-must'>Imperdível</span>", body: "O cruzeiro mais famoso de Paris. À noite, com os monumentos iluminados, é uma experiência mágica. A Torre Eiffel pisca com luzes a cada hora.", tips: [{type:"food", text:"Se quiserem jantar, há opções a bordo (caro) ou comam antes de embarcar na região do Pont de l'Alma."}] },
-    ],
-    food: {
-      title: "🍰 Comer em Paris (Dia 2)",
-      items: [
-        { name: "Les Deux Magots ou Café de Flore", desc: "Cafés históricos em Saint-Germain-des-Prés. Chocolate quente espesso com leite quente — o melhor de Paris. Ambiente incomparável.", price: "€8–15 para lanche" },
-        { name: "Crème Brûlée em qualquer pâtisserie", desc: "O doce mais francês que existe. Creme de baunilha com uma camada de açúcar caramelizado na chama. Em qualquer boa pâtisserie do bairro.", price: "€5–8" },
-        { name: "Macaron da Ladurée", desc: "O macaron mais famoso do mundo. As lojas Ladurée têm filas, mas a experiência vale. Sabores de framboesa, pistache, caramelo salgado e mais.", price: "€2,50–4 por unidade" },
-        { name: "Bistrô em Saint-Germain", desc: "Steak-frites (bifinho com batatas fritas) ou croque-madame (croque-monsieur com ovo por cima). Almoço clássico parisiense.", price: "€14–20" },
-      ]
-    }
-  },
+  {id:11,city:"Paris",em:"✨",date:"Qui, 7 mai 2026",t1:"Paris",t2:"C'est Magique",ti:1,
+  intro:"Notre-Dame reaberta, Versalhes e cruzeiro noturno no Sena. O dia mais romântico e histórico de toda a viagem.",
+  ev:[
+    {hl:1,time:"09:45",title:"⛪ Sacré-Cœur — Montmartre",body:"No ponto mais alto de Paris. Na subida, passe pela <strong>Rue de Steinkerque</strong> para souvenirs. Bairro mais charmoso de Paris."},
+    {hl:1,time:"10:06",title:"🌸 La Maison Rose",body:"A casinha rosa mais fotografada de Paris em uma viela pitoresca com trepadeiras."},
+    {hl:1,time:"10:20",title:"❤️ Muro do Eu Te Amo",body:"Mural com 'Eu te amo' em 250 idiomas numa pracinha escondida em Montmartre."},
+    {hl:1,time:"10:57",title:"🏛️ Hôtel de Ville",body:"Prefeitura de Paris. Vá pela margem do Sena até a Pont au Change para a foto das torres da Conciergerie."},
+    {hl:1,time:"11:13",title:"🪟 Sainte-Chapelle",bgs:["paid","must"],body:"Obra-prima do gótico (1248). Os 15 vitrais representam 1.113 cenas bíblicas — com luz natural, é transcendental.",tips:[{t:"must",i:"⭐",x:"Uma das experiências visuais mais belas da Europa. Não pule."}]},
+    {hl:1,time:"12:00",title:"⛪ Catedral de Notre-Dame",bgs:["free"],body:"Reaberta em dez/2024 após o incêndio de 2019. Uma oportunidade histórica — a catedral renovada.",tips:[{t:"warn",i:"⚠️",x:"Verifique horário de funcionamento. Alta demanda após a reabertura."}]},
+    {hl:1,time:"13:15",title:"🏛️ Panthéon",body:"O mausoléu da República. Voltaire, Rousseau, Victor Hugo e Marie Curie estão aqui."},
+    {hl:1,time:"13:36",title:"☕ Saint-Germain-des-Prés",bgs:["must"],body:"O bairro mais intelectual de Paris. Frequentado por Sartre, Simone de Beauvoir e Hemingway.",tips:[{t:"food",i:"🍽️",x:"<strong>Imperdível:</strong> Chocolate quente no <strong>Les Deux Magots</strong> ou <strong>Café de Flore</strong> (~€8). Espesso, servido com leite quente. Crème brûlée fresco numa pâtisserie do bairro."}]},
+    {hl:1,time:"15:36",title:"👑 Palácio de Versalhes",bgs:["paid","must"],body:"A Galeria dos Espelhos (357 espelhos) é de cair o queixo. Jardins de Le Nôtre por quilômetros.",tips:[{t:"warn",i:"⚠️",x:"Reserve com antecedência. Foco: palácio + Galeria dos Espelhos + Trianon se der tempo."}]},
+    {hl:1,time:"20:00",title:"🚢 Bateaux-Mouches — Cruzeiro no Sena",bgs:["must"],body:"O cruzeiro mais famoso de Paris. À noite, monumentos iluminados e a Torre Eiffel piscando a cada hora.",tips:[{t:"food",i:"🍽️",x:"Jantem antes de embarcar. Comida a bordo é cara."}]},
+  ],
+  food:[
+    {n:"Café de Flore / Les Deux Magots",d:"Cafés históricos do séc. XIX. Chocolate quente espesso com leite quente — o melhor de Paris.",p:"€8–15"},
+    {n:"Crème Brûlée",d:"Creme de baunilha com açúcar caramelizado na chama. Em qualquer boa pâtisserie.",p:"€5–8"},
+    {n:"Macaron da Ladurée",d:"O macaron mais famoso do mundo. Framboesa, pistache, caramelo salgado.",p:"€2,50–4 por unidade"},
+    {n:"Steak-Frites num bistrô",d:"Bife com batatas fritas. O almoço clássico parisiense.",p:"€14–20"},
+  ]},
 
-  {
-    id: 12,
-    label: "Dia 12",
-    city: "Disneyland Paris",
-    title: "Uma Vez na Vida",
-    date: "Sexta-feira, 8 de maio de 2026",
-    emoji: "🏰",
-    intro: "O dia mais mágico da viagem! Disneyland Paris — o maior parque temático da Europa. O parque abre às 9:30 e fecha às 22:40. Uma hora antes do fechamento, tem show de fogos e drones.",
-    events: [
-      { time: "07:20", type: "highlight", title: "🚇 Saída para a Disneyland", body: "Vão de metrô até a estação Nation e depois RER A direto até Marne-la-Vallée-Chessy — a estação é dentro do parque.", tips: [{type:"food", text:"<strong>Café da manhã na chegada:</strong> Na estação Marne-la-Vallée-Chessy há Prêt à Manger, Starbucks e Brioche Dorée — mais barato que dentro do parque."}] },
-      { time: "08:24", type: "highlight", title: "🏰 Disneyland Paris <span class='badge badge-must'>Dia Inteiro</span>", body: "O parque inclui Disneyland Park e Walt Disney Studios. Estratégia: vão primeiro às atrações mais populares (Big Thunder Mountain, Pirates of the Caribbean, Buzz Lightyear Laser Blast) cedo, quando as filas são menores.", tips: [{type:"info", text:"Use o app oficial da Disneyland Paris para checar tempos de espera em tempo real. Premier Access (pago) reduz filas das atrações principais."}, {type:"food", text:"<strong>Dentro do parque:</strong> La Cantina (comida mexicana rápida), The Lucky Nugget (americana), ou vá até o Plaza Gardens para refeição sentada. A comida é cara (~€15–20) — comprem snacks na entrada se quiserem economizar."}, {type:"warn", text:"Uma hora antes do fechamento (21:40) começa o show de fogos e drones — <strong>não saiam antes</strong>!"}] },
-      { time: "22:40", type: "highlight", title: "🌙 Saída e retorno ao hotel", body: "RER A direto de volta para Paris. O trem fica lotado após o fechamento — mantenham-se juntos." },
-    ],
-    food: {
-      title: "🍔 Comer na Disneyland",
-      items: [
-        { name: "Café da manhã ANTES de entrar", desc: "Brioche Dorée ou Prêt à Manger na estação. Muito mais barato que dentro do parque.", price: "€5–8" },
-        { name: "Snacks no parque — Mickey Waffle / Churros", desc: "O Mickey Waffle (waffle em formato de Mickey) é um clássico da Disneyland. Churros também são vendidos nos carrinhos espalhados.", price: "€5–8" },
-        { name: "La Cantina (Disneyland Park)", desc: "Fast-food temático com burgers, nachos e wraps. Uma das opções mais práticas.", price: "€14–18" },
-      ]
-    }
-  },
+  {id:12,city:"Disneyland Paris",em:"🏰",date:"Sex, 8 mai 2026",t1:"Uma Vez",t2:"na Vida",ti:0,
+  intro:"O dia mais mágico da viagem! Disneyland Paris — o maior parque temático da Europa. Parque abre às 9:30 e fecha às 22:40. Show de fogos e drones 1h antes do fechamento.",
+  ev:[
+    {hl:1,time:"07:20",title:"🚇 Saída para a Disneyland",body:"Metrô linha 2 → Nation, depois RER A até Marne-la-Vallée-Chessy — estação dentro do parque.",tips:[{t:"food",i:"🍽️",x:"<strong>Café da manhã na chegada:</strong> Pret A Manger, Starbucks ou Brioche Dorée na estação — muito mais barato que dentro do parque."}]},
+    {hl:1,time:"08:24",title:"🏰 Disneyland Paris",bgs:["must"],body:"Estratégia: Big Thunder Mountain, Pirates of the Caribbean e Buzz Lightyear primeiro, quando as filas são menores.",tips:[{t:"info",i:"ℹ️",x:"Use o app oficial para tempos de espera em tempo real."},{t:"warn",i:"⚠️",x:"Show de fogos às 21:40 — <strong>não saiam antes!</strong>"}]},
+    {hl:1,time:"22:40",title:"🌙 Saída e retorno ao hotel",body:"RER A de volta para Paris. Mantenham-se juntos — trem lotado após o fechamento."},
+  ],
+  food:[
+    {n:"Café ANTES de entrar",d:"Brioche Dorée ou Pret na estação. Muito mais barato que dentro do parque.",p:"€5–8"},
+    {n:"Mickey Waffle / Churros",d:"O waffle em formato de Mickey é o clássico. Churros nos carrinhos pelo parque.",p:"€5–8"},
+    {n:"La Cantina",d:"Fast-food temático: burgers, nachos e wraps. Uma das opções mais práticas.",p:"€14–18"},
+  ]},
 
-  {
-    id: 13,
-    label: "Dia 13",
-    city: "Barcelona",
-    title: "Chegada em Barcelona",
-    date: "Sábado, 9 de maio de 2026",
-    emoji: "🇪🇸",
-    intro: "Dia de ir ao Parc des Princes (PSG), Roland Garros, e voo para Barcelona. À noite, explorem a vida noturna catalã.",
-    events: [
-      { time: "10:14", type: "highlight", title: "⚽ Parc des Princes (PSG)", body: "O estádio do atual campeão europeu. Hoje tem jogo, então não há tour normal — mas passem em volta para sentir o clima de dia de jogo e visitar as lojas oficiais.", tips: [{type:"info", text:"Ao lado fica outro estádio usado pelo Paris FC. Arquitetura bem diferente, curioso de comparar."}] },
-      { time: "10:50", type: "highlight", title: "🎾 Roland Garros", body: "O templo do tênis de saibro, palco do Grand Slam de Paris. Sem abertura de tour hoje, mas a estrutura externa e as entradas são impressionantes para os fãs de tênis." },
-      { time: "15:55", type: "highlight", title: "✈️ Voo Paris → Barcelona", body: "Voo VY8249 de Paris CDG Terminal 3 às 15:55, chegada em Barcelona às 17:50.", tips: [{type:"food", text:"Almoço rápido antes do aeroporto — kebab, McDonalds ou BK perto do hotel."}] },
-      { time: "19:09", type: "highlight", title: "🏨 Leevin Stay Barcelona — Check-in", body: "Chegada no hotel. Descansem um pouco antes de sair para conhecer a cidade à noite.", tips: [{type:"food", text:"<strong>Jantar à noite:</strong> Barcelona à noite é incrível. Procure um bar de tapas na região — peça patatas bravas, croquetas, pan con tomate e jamón ibérico. Muitos bares ainda servem tapas de graça quando você pede uma bebida, especialmente fora da área turística."}] },
-    ],
-    food: {
-      title: "🥘 Primeiras tapas em Barcelona",
-      items: [
-        { name: "Patatas Bravas", desc: "Batatas fritas com molho spicy (brava) e aioli. O snack mais onipresente de Barcelona.", price: "€4–7" },
-        { name: "Pan con Tomate (Pa amb Tomàquet)", desc: "Pão esfregado com tomate e regado com azeite e sal. A base de tudo em Catalunha.", price: "€2–4" },
-        { name: "Croquetas de Jamón", desc: "Croquetes cremosos de presunto ibérico. Imperdíveis.", price: "€4–8 (6 unidades)" },
-        { name: "Bar de tapas com bebida", desc: "Em bares menos turísticos, pedir uma cerveja pode vir acompanhada de uma tapa gratuita. Procure fora das ruas principais.", price: "€2–4 a cerveja" },
-      ]
-    }
-  },
+  {id:13,city:"Barcelona",em:"🇪🇸",date:"Sáb, 9 mai 2026",t1:"Chegada",t2:"em Barcelona",ti:0,
+  intro:"Parc des Princes (PSG), Roland Garros e voo para Barcelona. À noite, explorem a vida noturna catalã.",
+  ev:[
+    {hl:1,time:"10:14",title:"⚽ Parc des Princes (PSG)",body:"Dia de jogo — sem tour normal. Passem ao redor para sentir o clima e visitar as lojas oficiais.",tips:[{t:"info",i:"ℹ️",x:"Ao lado fica o estádio do Paris FC — dois mundos bem diferentes."}]},
+    {hl:1,time:"10:50",title:"🎾 Roland Garros",body:"O templo do tênis de saibro, palco do Grand Slam de Paris. Estrutura externa impressionante."},
+    {hl:1,time:"12:06",title:"🏨 Hotel — Almoço rápido",body:"Kebab, McDonalds ou BK — almoço rápido antes do voo das 15:55.",},
+    {hl:1,time:"15:55",title:"✈️ Voo Paris → Barcelona",body:"VY8249 de Paris CDG Terminal 3. Chegada às 17:50."},
+    {hl:1,time:"19:09",title:"🏨 Leevin Stay Barcelona — Check-in",body:"Descansem antes de sair à noite.",tips:[{t:"food",i:"🍽️",x:"<strong>Jantar:</strong> Bar de tapas na vizinhança — patatas bravas, croquetas e jamón ibérico. Em muitos bares, pedir uma bebida traz tapas de graça."}]},
+  ],
+  food:[
+    {n:"Patatas Bravas",d:"Batatas fritas com molho spicy (brava) e aioli. O snack mais onipresente de Barcelona.",p:"€4–7"},
+    {n:"Pan con Tomate (Pa amb Tomàquet)",d:"Pão esfregado com tomate + azeite + sal. A base de tudo em Catalunha.",p:"€2–4"},
+    {n:"Croquetas de Jamón",d:"Croquetes cremosos de presunto ibérico. Imperdíveis.",p:"€4–8 (6 unid.)"},
+  ]},
 
-  {
-    id: 14,
-    label: "Dia 14",
-    city: "Barcelona",
-    title: "Sagrada Família e El Clássico",
-    date: "Domingo, 10 de maio de 2026",
-    emoji: "⛪",
-    intro: "O dia mais épico de Barcelona: missa gratuita na Sagrada Família, passeio pelo Distrito Gótico e à noite, El Clássico — Barcelona x Real Madrid!",
-    events: [
-      { time: "07:56", type: "highlight", title: "⛪ La Sagrada Família — Missa gratuita <span class='badge badge-free'>Gratuito</span>", body: "Entrem de graça para a missa das 9h pela porta da Natividade. Entrada limitada a 500 pessoas — cheguen cedo! O interior da basílica em plena liturgia é uma experiência transcendente — a luz filtrada pelos vitrais coloridos de Gaudí é indescritível.", tips: [{type:"warn", text:"Chegada recomendada às 7:56. Fila já forma antes das 8h. Somente pela entrada da Natividad (Natividade)."}] },
-      { time: "10:18", type: "highlight", title: "🌿 La Rambla", body: "A avenida mais famosa de Barcelona, com sua faixa central de pedestres, bancas de flores, artistas e movimentação constante. Começa no Liceu e vai até o Port Vell (porto).", tips: [{type:"warn", text:"Na Rambla, cuidado com batedores de carteira — deixem documentos e dinheiro em segurança no hotel."}] },
-      { time: "10:20", type: "highlight", title: "🏛️ Distrito Gótico + Catedral de Barcelona", body: "Ruelas medievais do bairro gótico de Barcelona. Destaques: <strong>El Pont del Bisbe</strong> (ponte gótica decorada), <strong>Muralla Romana</strong> (muros romanos do século IV) e a <strong>Catedral de Barcelona</strong> com seu claustro de gansos.", tips: [{type:"food", text:"Almoço no Bairro Gótico ou na Barceloneta. Granja (cafés tradicionais catalães) ou restaurantes de menu do dia (menú del día) — entrada + prato + sobremesa + bebida por €12–15."}] },
-      { time: "12:51", type: "highlight", title: "🏛️ Torres Venezianas", body: "Duas torres imponentes que marcam a entrada da Avenida Espanya, inspiradas no campanário de São Marcos em Veneza. Construídas para a Exposição Universal de 1929." },
-      { time: "13:11", type: "highlight", title: "⛲ Font Màgica de Montjuïc", body: "A Fonte Mágica — à noite tem shows de luz, água e música. De dia, a escadaria monumental impressiona." },
-      { time: "13:21", type: "highlight", title: "🏛️ Palácio Nacional de Montjuïc — MNAC", body: "Não precisam entrar no museu — a fachada e o mirante acima valem por si só. Vista panorâmica de Barcelona." },
-      { time: "13:50", type: "highlight", title: "🏟️ Parque Olímpico — Legado 1992", body: "A Torre Olímpica e o Estádio Olímpico das Olimpíadas de 1992 de Barcelona. Um legado arquitetônico impressionante." },
-      { time: "21:00", type: "highlight", title: "⚽ El Clássico — Barcelona x Real Madrid <span class='badge badge-must'>Épico</span>", body: "O jogo mais assistido do planeta. Mesmo sem ingresso, assistir em um pub esportivo de Barcelona durante um Clássico é uma experiência inesquecível.", tips: [{type:"food", text:"Jantem em um bar de tapas e depois fiquem no mesmo lugar ou escolham um bar esportivo com telão para o jogo. A cidade ferve!"}] },
-    ],
-    food: {
-      title: "🥘 Comer em Barcelona (Dia Gótico)",
-      items: [
-        { name: "Menú del día (menu do dia)", desc: "A tradição catalã: entrada + prato principal + sobremesa + bebida + pão. Melhor custo-benefício de Barcelona. Procure fora das ruas turísticas.", price: "€12–15" },
-        { name: "Bocadillo de Jamón Ibérico", desc: "Baguete com presunto ibérico. Simple e inesquecível com um bom presunto.", price: "€4–7" },
-        { name: "Tapas em bar local", desc: "Peça gambas al ajillo (camarões no alho), pimientos de padrón (pimentões fritos) e jamón ibérico com pa amb tomàquet.", price: "€3–8 por tapa" },
-      ]
-    }
-  },
+  {id:14,city:"Barcelona",em:"⛪",date:"Dom, 10 mai 2026",t1:"Sagrada Família",t2:"& El Clássico",ti:0,
+  intro:"Missa gratuita na Sagrada Família com a luz dos vitrais de Gaudí, passeio pelo Distrito Gótico e à noite El Clássico — Barcelona x Real Madrid!",
+  ev:[
+    {hl:1,time:"07:56",title:"⛪ La Sagrada Família — Missa",bgs:["free","must"],body:"Entrem de graça para a missa das 9h pela <strong>porta da Natividade</strong>. Entrada limitada a 500 pessoas. A luz dos vitrais de Gaudí é transcendente.",tips:[{t:"warn",i:"⚠️",x:"Fila forma antes das 8h. Somente pela entrada da Natividad."}]},
+    {hl:1,time:"10:18",title:"🌿 La Rambla",body:"A avenida mais famosa de Barcelona. Bancas de flores e artistas de rua.",tips:[{t:"warn",i:"⚠️",x:"Cuidado com batedores de carteira na Rambla. Documentos e dinheiro no hotel."}]},
+    {hl:1,time:"10:20",title:"🏛️ Distrito Gótico + Catedral",body:"Destaques: <strong>El Pont del Bisbe</strong>, <strong>Muralla Romana</strong> (séc. IV) e a <strong>Catedral de Barcelona</strong> com seu claustro de gansos."},
+    {hl:1,time:"12:51",title:"🏛️ Torres Venezianas",body:"Inspiradas no campanário de São Marcos em Veneza. Construídas para a Exposição Universal de 1929."},
+    {hl:1,time:"13:11",title:"⛲ Font Màgica de Montjuïc",body:"À noite tem shows de luz, água e música. De dia a escadaria monumental impressiona."},
+    {hl:1,time:"13:21",title:"🏛️ Palácio Nacional — MNAC",body:"Não precisam entrar — fachada e mirante com vista panorâmica de Barcelona são o prêmio."},
+    {hl:1,time:"13:50",title:"🏟️ Parque Olímpico 1992",body:"Torre Olímpica e Estádio das Olimpíadas de Barcelona — legado arquitetônico incrível."},
+    {hl:1,time:"21:00",title:"⚽ El Clássico — Barcelona x Real Madrid",bgs:["must"],body:"O jogo mais assistido do planeta. Num pub esportivo de Barcelona — experiência inesquecível.",tips:[{t:"food",i:"🍽️",x:"Jantem em bar de tapas e fiquem para o jogo. A cidade toda ferve!"}]},
+  ],
+  food:[
+    {n:"Menú del día",d:"Entrada + prato + sobremesa + bebida + pão. Melhor custo-benefício de Barcelona.",p:"€12–15"},
+    {n:"Bocadillo de Jamón Ibérico",d:"Baguete com presunto ibérico. Simples e inesquecível.",p:"€4–7"},
+    {n:"Gambas al Ajillo",d:"Camarões no azeite com alho. Uma das melhores tapas quentes.",p:"€8–12"},
+  ]},
 
-  {
-    id: 15,
-    label: "Dia 15",
-    city: "Barcelona",
-    title: "Praia, Camp Nou e Bunkers",
-    date: "Segunda-feira, 11 de maio de 2026",
-    emoji: "⚽",
-    intro: "Último dia em Barcelona! Comecem na praia, depois o tour no Camp Nou e terminem nos Bunkers del Carmel para o pôr do sol mais bonito da cidade.",
-    events: [
-      { time: "10:30", type: "highlight", title: "🏖️ Praia de La Barceloneta", body: "A praia urbana mais famosa da Espanha. Areia dourada, Mediterrâneo azul e a skyline de Barcelona ao fundo. O passeio marítimo (Passeig Marítim) é ótimo para caminhar ou alugar bicicletas.", tips: [{type:"food", text:"<strong>Almoço na praia:</strong> Chiringuito (barraca de praia) para paella valenciana, fideuà (paella com macarrão) ou arroz negro. Ou peixes frescos grelhados. A experiência completa de Barcelona."}] },
-      { time: "16:30", type: "highlight", title: "⚽ Camp Nou — Tour <span class='badge badge-paid'>€28</span>", body: "O estádio do FC Barcelona — o maior da Europa por capacidade. Atualmente em reformas, mas o tour cobre os vestiários históricos, a área de imprensa e a experiência do clube.", tips: [{type:"warn", text:"Última entrada às 18h. Tour a cada 30 minutos. Comprem ingresso antecipadamente."}] },
-      { time: "19:15", type: "highlight", title: "🌅 Bunkers del Carmel <span class='badge badge-must'>Pôr do sol épico</span>", body: "Ruínas de uma bateria antiaérea da Guerra Civil com a vista de 360° mais incrível de Barcelona. À medida que o sol se põe sobre o Mediterrâneo, com a cidade inteira aos pés, é um dos momentos mais memoráveis da viagem.", tips: [{type:"info", text:"Leve algo para beber e um lanche. O local é ao ar livre e sem facilidades. Chegue pelo menos 1h antes do pôr do sol para garantir lugar com vista."}, {type:"food", text:"<strong>Jantar de despedida:</strong> Voltem para algum bar de tapas favorito da viagem ou experimente um restaurante catalão com ingredientes do mercado da Boqueria."}] },
-    ],
-    food: {
-      title: "🥘 Último dia em Barcelona — Comer bem",
-      items: [
-        { name: "Paella na Barceloneta", desc: "Paella valenciana (com frutos do mar e açafrão) em um chiringuito (bar de praia). A experiência gastronômica mais icônica da Espanha.", price: "€15–25 por pessoa" },
-        { name: "Fideuà", desc: "Versão da paella com macarrão fino ao invés de arroz. Tipicamente catalã, servida com alioli (aïoli catalão).", price: "€14–22" },
-        { name: "Caipirinhas e tapas de despedida", desc: "Nos bares ao redor do hotel ou na área da Barceloneta, jantem bem e brindem ao fim da viagem!", price: "€15–25 por pessoa" },
-      ]
-    }
-  },
+  {id:15,city:"Barcelona",em:"🌅",date:"Seg, 11 mai 2026",t1:"Praia, Camp Nou",t2:"& Bunkers",ti:0,
+  intro:"Último dia! Praia de La Barceloneta, tour no Camp Nou e o pôr do sol mais bonito da viagem nos Bunkers del Carmel.",
+  ev:[
+    {hl:1,time:"10:30",title:"🏖️ Playa de La Barceloneta",body:"A praia urbana mais famosa da Espanha. Mediterrâneo azul e a skyline de Barcelona ao fundo.",tips:[{t:"food",i:"🍽️",x:"<strong>Almoço na praia:</strong> Chiringuito para paella valenciana, fideuà ou peixes grelhados. A experiência completa."}]},
+    {hl:1,time:"16:30",title:"⚽ Camp Nou — Tour",bgs:["paid"],body:"O maior estádio da Europa. Vestiários históricos e experiência do FC Barcelona.",tips:[{t:"warn",i:"⚠️",x:"Última entrada às 18h. Tour a cada 30 min. Comprem antecipadamente. €28."}]},
+    {hl:1,time:"19:15",title:"🌅 Bunkers del Carmel",bgs:["must"],body:"Ruínas de bateria antiaérea da Guerra Civil com vista de 360° de Barcelona. Enquanto o sol se põe sobre o Mediterrâneo — o momento mais memorável da viagem.",tips:[{t:"info",i:"ℹ️",x:"Leve bebida e lanche. Chegue 1h antes do pôr do sol para garantir lugar."},{t:"food",i:"🍽️",x:"<strong>Jantar de despedida:</strong> Voltem para um bar de tapas favorito e brindem ao fim da viagem!"}]},
+  ],
+  food:[
+    {n:"Paella na Barceloneta",d:"Paella valenciana com frutos do mar num chiringuito à beira-mar.",p:"€15–25"},
+    {n:"Fideuà",d:"Versão da paella com macarrão fino. Tipicamente catalã, com alioli.",p:"€14–22"},
+    {n:"Tapas de despedida",d:"Última rodada de patatas bravas, croquetas e jamón. Brindem ao fim da viagem!",p:"€15–25"},
+  ]},
 ];
 
-// Build navigation
-const navInner = document.getElementById('dayNavInner');
-const mainContent = document.getElementById('mainContent');
+const tabsEl=document.getElementById('tabs');
+const mainEl=document.getElementById('main');
 
-days.forEach((day, idx) => {
-  const btn = document.createElement('button');
-  btn.className = 'day-btn' + (idx === 0 ? ' active' : '');
-  btn.textContent = `${day.emoji} ${day.label} — ${day.city}`;
-  btn.dataset.idx = idx;
-  btn.addEventListener('click', () => showDay(idx));
-  navInner.appendChild(btn);
+D.forEach((d,i)=>{
+  const btn=document.createElement('button');
+  btn.className='tab'+(i===0?' on':'');
+  btn.textContent=`${d.em} D${d.id} ${d.city}`;
+  btn.onclick=()=>show(i);
+  tabsEl.appendChild(btn);
+
+  const panel=document.createElement('div');
+  panel.className='dp'+(i===0?' on':'');
+  panel.id='dp'+i;
+  panel.innerHTML=build(d,i);
+  mainEl.appendChild(panel);
 });
 
-function buildDayHTML(day, idx) {
-  const eventsHTML = day.events.map(ev => {
-    const isHighlight = ev.type === 'highlight';
-    const tipsHTML = (ev.tips || []).map(t => `
-      <div class="tip tip-${t.type}">
-        <span class="tip-icon">${{info:'ℹ️', warn:'⚠️', food:'🍽️', transport:'🚇', must:'⭐'}[t.type]||'💡'}</span>
-        ${t.text}
-      </div>
-    `).join('');
-    return `
-      <div class="timeline-item ${isHighlight ? 'highlight' : 'transport'}">
-        <div class="timeline-time">${ev.time}</div>
-        <div class="timeline-dot"><div class="dot"></div></div>
-        <div class="timeline-card">
-          <div class="card-title">${ev.title}</div>
-          ${ev.body ? `<div class="card-body">${ev.body}${tipsHTML}</div>` : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  const foodHTML = day.food ? `
-    <div class="food-section">
-      <div class="food-header">${day.food.title}</div>
-      <div class="food-list">
-        ${day.food.items.map(f => `
-          <div class="food-item">
-            <div class="food-name">${f.name}</div>
-            <div class="food-desc">${f.desc}</div>
-            ${f.price ? `<div class="food-price">💰 ${f.price}</div>` : ''}
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  ` : '';
-
-  const prevDay = idx > 0 ? days[idx-1] : null;
-  const nextDay = idx < days.length-1 ? days[idx+1] : null;
-
-  return `
-    <div class="day-header">
-      <div class="day-label">Dia ${day.id} de 15 • ${day.emoji} ${day.city}</div>
-      <h2 class="day-title">${day.title}</h2>
-      <div class="day-date">${day.date}</div>
-    </div>
-    ${day.intro ? `<div class="day-intro">${day.intro}</div>` : ''}
-    <div class="timeline">${eventsHTML}</div>
-    <div class="section-divider">Gastronomia do dia</div>
-    ${foodHTML}
-    <div class="nav-arrows">
-      <button class="nav-arrow prev" onclick="showDay(${idx-1})" ${!prevDay?'disabled':''}>
-        <span class="nav-arrow-label">← Dia anterior</span>
-        <span class="nav-arrow-name">${prevDay ? prevDay.emoji+' '+prevDay.city : ''}</span>
-      </button>
-      <button class="nav-arrow next" onclick="showDay(${idx+1})" ${!nextDay?'disabled':''}>
-        <span class="nav-arrow-label">Próximo dia →</span>
-        <span class="nav-arrow-name">${nextDay ? nextDay.emoji+' '+nextDay.city : ''}</span>
-      </button>
-    </div>
-  `;
+function bgs(list){
+  if(!list||!list.length)return'';
+  const m={free:['free','Grátis'],paid:['paid','Pago'],must:['must','Não perca']};
+  return`<div class="bgs">${list.map(b=>`<span class="bg bg-${b}">${m[b][1]}</span>`).join('')}</div>`;
 }
 
-// Pre-render all days
-days.forEach((day, idx) => {
-  const panel = document.createElement('div');
-  panel.className = 'day-panel' + (idx === 0 ? ' active' : '');
-  panel.id = `day-${idx}`;
-  panel.innerHTML = buildDayHTML(day, idx);
-  mainContent.appendChild(panel);
-});
+function tips(list){
+  if(!list||!list.length)return'';
+  return list.map(t=>`<div class="tip tip-${t.t}"><span class="ti-icon">${t.i}</span><div class="ti-c">${t.x}</div></div>`).join('');
+}
 
-function showDay(idx) {
-  if (idx < 0 || idx >= days.length) return;
-  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(`day-${idx}`).classList.add('active');
-  document.querySelectorAll('.day-btn')[idx].classList.add('active');
+function build(d,idx){
+  const titleHTML=d.ti===0
+    ?`${d.t1}<br><em>${d.t2}</em>`
+    :`<em>${d.t1}</em><br>${d.t2}`;
 
-  // Scroll nav button into view
-  const activeBtn = document.querySelectorAll('.day-btn')[idx];
-  activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const evHTML=d.ev.map(ev=>{
+    if(!ev.hl)return`
+      <div class="ti tr">
+        <div class="tl-l"><div class="tl-t">${ev.time}</div><div class="tl-lv"></div></div>
+        <div class="tl-m"><div class="dot"></div><div class="tl-lv2"></div></div>
+        <div class="tb2"><div class="tr-row">${ev.title}</div></div>
+      </div>`;
+    return`
+      <div class="ti hl">
+        <div class="tl-l"><div class="tl-t">${ev.time}</div><div class="tl-lv"></div></div>
+        <div class="tl-m"><div class="dot"></div><div class="tl-lv2"></div></div>
+        <div class="tb2">
+          <div class="hc">
+            <div class="hc-top">
+              <div class="hc-title">${ev.title}</div>
+              ${bgs(ev.bgs)}
+            </div>
+            <div class="hc-body">${ev.body||''}${tips(ev.tips)}</div>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  const foodHTML=d.food.map(f=>`
+    <div class="fi">
+      <div class="fn">${f.n}</div>
+      <div class="fd">${f.d}</div>
+      ${f.p?`<div class="fp">${f.p}</div>`:''}
+    </div>`).join('');
+
+  const sideFood=`<div class="fc-h"><div class="fc-hl">🍽️ Onde comer</div></div><div class="fl">${foodHTML}</div>`;
+
+  const prev=idx>0?D[idx-1]:null;
+  const next=idx<D.length-1?D[idx+1]:null;
+
+  return`
+    <div class="hero">
+      <div class="hero-meta">
+        <span class="dayn">Dia ${d.id} / 15</span>
+        <span class="dated">${d.date}</span>
+      </div>
+      <h1 class="htitle">${titleHTML}</h1>
+      <div class="hcity">${d.em} ${d.city}</div>
+      <div class="intro">${d.intro}</div>
+    </div>
+    <div class="grid">
+      <div>
+        <div class="slabel">Roteiro do dia</div>
+        <div class="tl">${evHTML}</div>
+        <div class="fc-mob">${sideFood}</div>
+        <div class="dn">
+          <button class="nb" onclick="show(${idx-1})" ${!prev?'disabled':''}>
+            <div class="nb-l">← anterior</div>
+            <div class="nb-n">${prev?prev.em+' '+prev.city:'—'}</div>
+          </button>
+          <button class="nb nr" onclick="show(${idx+1})" ${!next?'disabled':''}>
+            <div class="nb-l">próximo →</div>
+            <div class="nb-n">${next?next.em+' '+next.city:'—'}</div>
+          </button>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="fc">${sideFood}</div>
+      </div>
+    </div>`;
+}
+
+function show(i){
+  if(i<0||i>=D.length)return;
+  document.querySelectorAll('.dp').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('dp'+i).classList.add('on');
+  const t=document.querySelectorAll('.tab')[i];
+  t.classList.add('on');
+  t.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
 </body>
